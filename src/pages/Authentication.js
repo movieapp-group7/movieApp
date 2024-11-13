@@ -46,16 +46,13 @@ export default function Authentication({authenticationMode}) {
     <div className="authentication-container">
       <h3>{authenticationMode === AuthenticationMode.Login ? 'Sign in' : 'Sign up'}</h3>
       <form onSubmit={handleSubmit}>
-      {authenticationMode === AuthenticationMode.Register && (
+      {authenticationMode === AuthenticationMode.Register }
+        
+        
+        {authenticationMode === AuthenticationMode.Register && (
           <div>
             <label>Username</label>
-            <input
-              type="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter your username"
-              required
-            />
+            <input type="username" value={user.username} onChange={e => setUser({...user,username:e.target.value})} />
           </div>
         )}
         <div>
