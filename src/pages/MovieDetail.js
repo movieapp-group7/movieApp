@@ -5,7 +5,10 @@ import './MovieDetail.css';
 import axios from 'axios';
 import useUser from '../context/useUser';
 import ReviewList from '../components/ReviewList';
-import FavoriteButton from '../pages/FavoriteBotton.js';
+
+
+import FavoriteButton from '../components/FavoriteBotton';
+
 
 const MovieDetail = () => {
   const { movieId } = useParams();
