@@ -3,10 +3,7 @@ import MovieList from './MovieList';
 
 const FilteredMovieList = ({type}) => {
   const [movies, setMovies] = useState([]);
-  // const [type, setType] = useState('popular'); 
-
   
-
   // fetch data
   const fetchMovies = async () => {
     const url = `https://api.themoviedb.org/3/movie/${type}`;

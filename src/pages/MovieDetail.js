@@ -12,9 +12,6 @@ const MovieDetail = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState('');
   const [reviews,setReviews]=useState([]);
-  // const [type, setType] = useState('popular'); 
-
-  
 
   // fetch data
   const fetchMovies = async () => {
