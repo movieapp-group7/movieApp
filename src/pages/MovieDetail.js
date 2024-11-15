@@ -3,11 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './MovieDetail.css';
 import axios from 'axios';
-import useUser from '../context/useUser';
 import ReviewList from '../components/ReviewList';
-
-
 import FavoriteButton from '../components/FavoriteBotton';
+import ReviewForm from '../components/ReviewForm';
 
 
 const MovieDetail = () => {
@@ -37,7 +35,8 @@ const MovieDetail = () => {
       console.error('Failed to fetch movies:', error);
     }
   };
-
+  
+  /*//get reviews from API
   const fetchReviews = async () => {
     const url = `https://api.themoviedb.org/3/movie/${movieId}/reviews`;
     const options = {
@@ -55,11 +54,25 @@ const MovieDetail = () => {
     } catch (error) {
       console.error('Failed to fetch movies:', error);
     }
+  };*/
+
+  //get reviews by movieId from database
+  const fetchReviews = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3001/movie/reviews/${movieId}`);
+      setReviews(response.data);
+    } catch (error) {
+      console.error('Error fetching reviews:', error);
+    }
+  }
+
+  const addReview = (newReview) => {
+    setReviews((prevReviews) => [newReview,...prevReviews]);
   };
 
   useEffect(() => {
-    fetchMovies(movieId);
-    fetchReviews(movieId)
+    fetchMovies();
+    fetchReviews()
   }, [movieId]);
 
   return (
@@ -100,6 +113,7 @@ const MovieDetail = () => {
       </div>
       <div className="reviews-info">
         <h3>Reviews</h3>
+        <ReviewForm movieId={movieId} addReview={addReview}/>
         <ReviewList reviews={reviews} />
       </div>
     </div>
