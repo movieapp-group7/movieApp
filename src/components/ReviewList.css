@@ -2,8 +2,8 @@
 
 .review-list {
   padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
+  background-color: rgb(227, 226, 226);
+  border-radius: 10px;
   max-width: 800px;
   margin: auto;
   color: #333;
@@ -18,6 +18,8 @@
 .review-item {
   padding: 15px;
   border-bottom: 1px solid #ddd;
+  background-color: lightgrey;
+  border-radius: 10px;
   margin-bottom: 15px;
 }
 

@@ -5,6 +5,7 @@ import './MovieDetail.css';
 import axios from 'axios';
 import useUser from '../context/useUser';
 import ReviewList from '../components/ReviewList';
+import star from "../assets/star.svg"
 
 const MovieDetail = () => {
   const { movieId } = useParams();
@@ -60,9 +61,7 @@ const MovieDetail = () => {
 
   return (
     <div className="movie-detail">
-      <div className="movie-backdrop" 
-      // style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})` }}
-      >
+      <div className="movie-backdrop">
         <div className="movie-title">
           <h1>{movie.title}</h1>
           <p className="movie-tagline">{movie.tagline}</p>
@@ -77,7 +76,7 @@ const MovieDetail = () => {
           {/* <p><strong>Genres:</strong> {movie.genres.map(genre => genre.name).join(', ')}</p> */}
           <p><strong>Release Date:</strong> {movie.release_date}</p>
           <p><strong>Runtime:</strong> {movie.runtime} minutes</p>
-          <p><strong>Rating:</strong> {movie.vote_average} / 10 ({movie.vote_count} votes)</p>
+          <p><img src={star} className='starIcon'></img>{movie.vote_average} / 10 ({movie.vote_count} votes)</p>
           {/* <p><strong>Languages:</strong> {movie.spoken_languages.map(lang => lang.english_name).join(', ')}</p> */}
           <p><strong>Production Companies:</strong></p>
           {/* <ul>
@@ -94,7 +93,6 @@ const MovieDetail = () => {
         </div>
       </div>
       <div className="reviews-info">
-        <h3>Reviews</h3>
         <ReviewList reviews={reviews} />
       </div>
     </div>
