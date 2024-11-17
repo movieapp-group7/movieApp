@@ -41,15 +41,15 @@ const Header = () => {
 
         {/* Right side: Login/register or Welcome back */}
         <div className='login'>
-        {user && user.email ? (
-            <>
-              <Link to="/profile">Account</Link> | <Link onClick={handleSignOut}>Sign Out</Link>
-            </>
-          ) : (
-            <>
-              <Link to="/signin">Login</Link> | <Link to="/signup">Register</Link>
-            </>
-          )}  
+          {user && user.email ? (
+              <>
+                <Link to="/profile" className='login-content'>Account</Link> | <Link onClick={handleSignOut} className='login-content'>Sign Out</Link>
+              </>
+            ) : (
+             <>
+               <Link to="/signin" className='login-content'>Login</Link> | <Link to="/signup" className='login-content'>Register</Link>
+             </>
+           )}  
         </div>
 
 
