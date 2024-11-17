@@ -1,4 +1,3 @@
-// src/components/FilteredMovieList.js
 import React, { useState, useEffect } from 'react';
 import MovieCarousel from './MovieCarousel';
 

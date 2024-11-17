@@ -1,10 +1,12 @@
 // src/components/Header.js
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import './Header.css';
 import homeIcon from "../assets/Home.svg"
 import profileIcon from "../assets/Profile.svg"
 import FilterTags from './FilterTags';
+import React, { useContext,useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import SearchBar from './SearchBar';
+import {UserContext} from '../context/UserContext.js'; 
 
 const filters = [
   { label: 'Top Rated', path: 'movies/toprated' },
@@ -15,6 +17,14 @@ const filters = [
 ];
 
 const Header = () => {
+  const { user, signOut } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    signOut();
+    navigate("/signin"); 
+  };
+
 
   return (
     <header className="header">
@@ -31,7 +41,15 @@ const Header = () => {
 
         {/* Right side: Login/register or Welcome back */}
         <div className='login'>
-          <Link to="/signin" className='login-content'>Login</Link> | <Link to="/signup" className='login-content'>Register</Link>
+        {user && user.email ? (
+            <>
+              <Link to="/profile">Account</Link> | <Link onClick={handleSignOut}>Sign Out</Link>
+            </>
+          ) : (
+            <>
+              <Link to="/signin">Login</Link> | <Link to="/signup">Register</Link>
+            </>
+          )}  
         </div>
 
 
