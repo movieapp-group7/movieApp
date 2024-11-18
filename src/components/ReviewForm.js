@@ -23,7 +23,7 @@ const ReviewForm = ({movieId,addReview,closeForm }) => {
 
     if (rating || newComment) {
       try {
-        const response = await fetch(url + "/movie/reviews", {
+        const response = await fetch(url + "/movie/newreview", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
