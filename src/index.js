@@ -20,6 +20,7 @@ import PopularMovies from './pages/PopularMovies';
 import TopRatedMovies from './pages/TopRatedMovies';
 import UpComingMovies from './pages/UpComingMovies';
 import MainLayout from './components/MainLayout';
+import FinnkinoSchedule from './pages/FinnkinoSchedule';
 
 
 
@@ -69,7 +70,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/showtimes",
-        element: <ShowTimes />,
+        element: <FinnkinoSchedule />,
       },
       {
         path: "/groups",
