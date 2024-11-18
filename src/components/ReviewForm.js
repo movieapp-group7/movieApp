@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const url = process.env.REACT_APP_API_URL
 
-const ReviewForm = ({movieId,addReview }) => {
+const ReviewForm = ({movieId,addReview,closeForm }) => {
   const { user } = useUser();
   const navigate = useNavigate();
   const [rating, setRating] = useState('');
@@ -15,11 +15,11 @@ const ReviewForm = ({movieId,addReview }) => {
   const handleAddReview = async(e) => {
     e.preventDefault();
 
-    if (!user.id) {
-      alert("Please log in to add a review.");
-      navigate('/signin'); // Redirect to login page if user is not logged in
-      return;
-    }
+    // if (!user.id) {
+    //   alert("Please log in to add a review.");
+    //   navigate('/signin'); // Redirect to login page if user is not logged in
+    //   return;
+    // }
 
     if (rating || newComment) {
       try {
@@ -49,6 +49,7 @@ const ReviewForm = ({movieId,addReview }) => {
           console.log("Review added successfully", data);
           setRating('');
           setNewComment(''); // Clear the review input field after submission
+          closeForm();
         } else {
           const errorData = await response.json();
           alert(errorData.message || 'Failed to add review');
@@ -66,18 +67,21 @@ const ReviewForm = ({movieId,addReview }) => {
   return (
     <form onSubmit={handleAddReview} className='review-form'>
       <h3>Rate and Review</h3>
-      <label>
-        Rating (0 - 5.0):
-        <input
-          type="number"
-          step="0.5"
-          min="0"
-          max="5.0"
-          value={rating}
-          onChange={(e) => setRating(e.target.value)}
-          required
-        />
-      </label>
+      <div className="rating-section">
+        <label>Your Rating:</label>
+        <div className="stars">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <span
+              key={star}
+              className={`star ${rating >= star ? 'selected' : ''}`}
+              onClick={() => setRating(star)}
+            >
+              ★
+            </span>
+          ))}
+        </div>
+        <span>{rating} / 5</span>
+      </div>
     
       <div>Comment:</div>
       <textarea
@@ -87,9 +91,7 @@ const ReviewForm = ({movieId,addReview }) => {
         onChange={(e) => setNewComment(e.target.value)}
       />
       <div>
-        <span className="useCount" id="useCount">{newComment.length}</span>
-        <span>/</span>
-        <span>{maxLength}</span>
+      <span className="useCount" id="useCount">{newComment.length}/{maxLength}</span>
       </div>
       
       <button type="submit">Add Review</button>

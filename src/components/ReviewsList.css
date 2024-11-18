@@ -1,12 +1,12 @@
-/* src/components/ReviewList.css */
 
 .review-list {
-  padding: 20px;
-  background-color: #f9f9f9;
+  max-width: 1000px; 
+  margin: auto; 
+  padding: 20px; 
+  background-color: #f9f9f9; 
   border-radius: 8px;
-  max-width: 800px;
-  margin: auto;
   color: #333;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
 .review-list h2 {
@@ -30,14 +30,21 @@
 }
 
 .review-rating {
-  background-color: #4caf50;
+  background-color: #8f918f;
   color: white;
   padding: 2px 6px;
   border-radius: 4px;
   font-size: 0.9rem;
 }
 
-.review-content {
+.review-rating:before {
+  content: "★";
+  font-size: 1.2rem;
+  color: gold;
+  margin-right: 4px;
+}
+
+.review-comment {
   margin: 10px 0;
   line-height: 1.5;
 }
@@ -61,3 +68,4 @@
 .review-date {
   font-style: italic;
 }
+
