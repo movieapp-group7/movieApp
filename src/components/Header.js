@@ -5,6 +5,7 @@ import SearchBar from './SearchBar';
 import FilterTags from './FilterTags';
 import './Header.css';
 import {UserContext} from '../context/UserContext.js'; 
+import logoImg from '../assets/logo-image.png';
 
 const filters = [
   { label: 'Top Rated', path: 'movies/toprated' },
@@ -35,7 +36,7 @@ const Header = () => {
       <div className="header-content">
         {/* Left side: Logo */}
         <div className="header-logo">
-          <h1><Link to="/">Movie Log</Link></h1>
+          <Link to="/"><img src={logoImg} className='logo-img'></img></Link>
         </div>
 
         {/* Center: Search Bar */}
