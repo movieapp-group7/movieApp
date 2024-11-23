@@ -11,7 +11,7 @@ export const AuthenticationMode = Object.freeze({
 export default function Authentication({authenticationMode}) {
   const {user, setUser, signUp, signIn} = useUser()
   const navigate = useNavigate()
-  const [username, setUsername] = useState(""); 
+ // const [username, setUsername] = useState(""); 
 
   const isPasswordValid = (password) => {
     const hasUpperCase = /[A-Z]/.test(password); // At least one uppercase letter
@@ -48,13 +48,13 @@ export default function Authentication({authenticationMode}) {
       <form onSubmit={handleSubmit}>
       {authenticationMode === AuthenticationMode.Register }
         
-        
+        {/** 
         {authenticationMode === AuthenticationMode.Register && (
           <div>
             <label>Username</label>
             <input type="username" value={user.username} onChange={e => setUser({...user,username:e.target.value})} />
           </div>
-        )}
+        )}*/}
         <div>
           <label>Email</label>
           <input type="email" value={user.email} onChange={e => setUser({...user,email:e.target.value})} />

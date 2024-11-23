@@ -8,7 +8,7 @@ const url = process.env.REACT_APP_API_URL
 export default function UserProvider({children}) {
   const userFromSessionStorage = sessionStorage.getItem('user')
   //console.log(userFromSessionStorage)
-  const [user, setUser] = useState(userFromSessionStorage ? JSON.parse(userFromSessionStorage): {username: '',email: '',password: ''})
+  const [user, setUser] = useState(userFromSessionStorage ? JSON.parse(userFromSessionStorage): {email: '',password: ''})
 
   // const signUp = async () => {
   //   const json =JSON.stringify(user);
