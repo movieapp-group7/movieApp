@@ -7,7 +7,6 @@ const url = process.env.REACT_APP_API_URL
 
 export default function UserProvider({children}) {
   const userFromSessionStorage = sessionStorage.getItem('user')
-  //console.log(userFromSessionStorage)
   const [user, setUser] = useState(userFromSessionStorage ? JSON.parse(userFromSessionStorage): {email: '',password: ''})
 
   // const signUp = async () => {
@@ -50,8 +49,9 @@ export default function UserProvider({children}) {
   }
 
   const signOut = () => {
-    setUser({username: '', email: '', password: ''})
+    setUser({ email: '', password: '' }) // Clear
     sessionStorage.removeItem('user')
+    // sessionStorage.removeItem('token') // 
   }
 
 
