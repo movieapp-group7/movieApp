@@ -1,8 +1,11 @@
 import React from 'react'
 import FavoriteMovies from '../components/FavoriteMovies'
 import '../pages/Profile.css'
+import useUser from '../context/useUser';
+
 
 export default function Profile() {
+  const { user } = useUser();
   return (
     <div class="page-container">
       <div style={{textAlign: 'center'}}>
@@ -14,10 +17,10 @@ export default function Profile() {
       </div>
 
 
-      <div class="username">
-  
-        <h3>Username: username</h3>
-        <h3>Email: email</h3>
+      <div className="username">
+        {/* add a separate font for following username */}
+        <h3>Username :   { user?.username || 'Not available'}</h3>
+        <h3>Email :   { user?.email || 'Not available'}</h3>
       </div>
 
       <div class = "User_favoriteList">
