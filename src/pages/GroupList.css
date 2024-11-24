@@ -1,0 +1,40 @@
+/* src/pages/GroupList.css */
+
+/* Style for the group list container */
+.group-list-container {
+    padding: 20px;
+  }
+  
+  /* Style for the group list header */
+  .group-list-header {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for the list items */
+  .group-list-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Style for the "Create New Group" button */
+  .create-group-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 50%;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .create-group-button:hover {
+    background-color: #0056b3;
+  }
+  

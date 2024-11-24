@@ -1,17 +1,13 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
-import { UserContext } from '../context/UserContext';
-import './GroupList.css'
+import { UserContext } from './UserContext'; // Import UserContext
 
 const CreateGroupModal = ({ onClose, onGroupCreated }) => {
-  const { user } = useContext(UserContext);
+  const { user } = useContext(UserContext);  // Access current user context
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-
-  // Define the API URL from environment variables
-  const url = process.env.REACT_APP_API_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,11 +15,12 @@ const CreateGroupModal = ({ onClose, onGroupCreated }) => {
     setError('');
 
     try {
-      const response = await axios.post(`${url}/groups/create`, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/groups/create`, {
         name,
         description,
         created_by: user.id,
       });
+      
 
       if (response.data.success) {
         onGroupCreated(response.data.group);
