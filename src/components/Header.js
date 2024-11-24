@@ -1,9 +1,11 @@
 // src/components/Header.js
+import './Header.css';
+import homeIcon from "../assets/Home.svg"
+import profileIcon from "../assets/Profile.svg"
+import FilterTags from './FilterTags';
 import React, { useContext,useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import SearchBar from './SearchBar';
-import FilterTags from './FilterTags';
-import './Header.css';
 import {UserContext} from '../context/UserContext.js'; 
 import logoImg from '../assets/logo-image.png';
 
@@ -16,13 +18,7 @@ const filters = [
 ];
 
 const Header = () => {
-  const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
   const { user, signOut } = useContext(UserContext);
-
-  const toggleFilterMenu = () => {
-    setIsFilterMenuOpen(!isFilterMenuOpen);
-  };
-
   const navigate = useNavigate();
 
   const handleSignOut = () => {
@@ -36,49 +32,53 @@ const Header = () => {
       <div className="header-content">
         {/* Left side: Logo */}
         <div className="header-logo">
+
           <Link to="/"><img src={logoImg} className='logo-img'></img></Link>
-        </div>
-
-        {/* Center: Search Bar */}
-        <div className="header-search">
-          <SearchBar />
-        </div>
-
-        {/* Right side: User options */}
-        <div className="header-user">
-          
-        {user && user.email ? (
-            <>
-              <Link to="/profile">Account</Link>
-              <Link onClick={handleSignOut}>Sign Out</Link>
-            </>
-          ) : (
-            <>
-              <Link to="/signin">Login</Link> | <Link to="/signup">Register</Link>
-            </>
-          )}
-
-
 
         </div>
-      </div>
 
-      {/* Filter tags (below Search Bar on larger screens, dropdown menu on smaller screens) */}
-      <div className="filter-container">
-        <div className="filter-tags-desktop">
+        {/* Center: filters */}
+        <div className="header-filters">
           <FilterTags filters={filters}/>
         </div>
-        <button className="filter-menu-toggle" onClick={toggleFilterMenu}>
-          ☰
-        </button>
-        {isFilterMenuOpen && (
-          <div className="filter-menu">
-            <FilterTags filters={filters}/>
-          </div>
-        )}
+
+        {/* Right side: Login/register or Welcome back */}
+        <div className='login'>
+          {user && user.email ? (
+              <>
+                <Link to="/profile" className='login-content'>Account</Link> | <Link onClick={handleSignOut} className='login-content'>Sign Out</Link>
+              </>
+            ) : (
+             <>
+               <Link to="/signin" className='login-content'>Login</Link> | <Link to="/signup" className='login-content'>Register</Link>
+             </>
+           )}  
+        </div>
+
+
+        {/* Right side: Profile icon */}
+        <div className="header-user">
+          <Link to="/profile"><img src={profileIcon} className='profileIcon'></img></Link>
+        </div>
       </div>
     </header>
   );
 };
 
 export default Header;
+
+/*
+
+  <div className="filter-container">
+      <div className="filter-tags-desktop">
+      </div>
+        <button className="filter-menu-toggle" onClick={toggleFilterMenu}>
+         ☰
+        </button>
+        {isFilterMenuOpen && (
+          <div className="filter-menu">
+            <FilterTags filters={filters}/>
+            </div>
+          )}
+</div>
+*/

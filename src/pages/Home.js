@@ -1,11 +1,10 @@
-// Home.js
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from '../components/SearchBar.js';
 import FilterTags from '../components/FilterTags.js';
 import FilteredMovieList from '../components/FilteredMovieList.js';
 import MovieCarouselList from '../components/MovieCarouselList.js';
-
+import './home.css'
 // const movieData = [
 //   { id:1, title: 'Inception', image:inceptionImage, rating: 8.8, releaseDate: '2010-07-16', popularity: 95 },
 //   { id:2, title: 'The Matrix', image:matrixImage, rating: 8.7, releaseDate: '1999-03-31', popularity: 90 },
@@ -26,28 +25,25 @@ const Home = () => {
   //   ];
 
   return (
-    <div>
-    <h1>Movie Website</h1>
+    <div className='background'>
     {/* <SearchBar />
-    <FilterTags filters={filters}/> */}
+    */}
     <MovieCarouselList type='now_playing' />
     
+    <h2>
+      <Link to="/movies/popular" className='text'> Most Popular &gt; </Link>
+    </h2>
+    <FilteredMovieList type = 'popular'/>
 
     <h2>
-      <Link to="/movies/toprated"> Top Rated &gt; </Link>
+      <Link to="/movies/toprated" className='text'> Top Rated &gt; </Link>
     </h2>
     <FilteredMovieList type = 'top_rated'/>
 
     <h2>
-      <Link to="/movies/upcoming"> Up Coming &gt; </Link>
+      <Link to="/movies/upcoming" className='text'> Coming soon &gt; </Link>
     </h2>
     <FilteredMovieList type = 'upcoming'/>
-
-    <h2>
-      <Link to="/movies/popular"> Most Popular &gt; </Link>
-    </h2>
-    <FilteredMovieList type = 'popular'/>
-
 
   </div>
   )

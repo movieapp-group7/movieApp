@@ -1,0 +1,21 @@
+.page-container {
+    padding: 15px;
+}
+
+.User_favoriteList {
+    margin-top: 75px;
+}
+
+.User_Groups{
+    margin-top: 75px;
+}
+
+.group {
+    background-color: rgb(204, 204, 204);
+    height: 300px;  
+
+}
+
+.Account_delete {
+    margin-top: 75px;
+}

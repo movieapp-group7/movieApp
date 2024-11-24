@@ -1,4 +1,3 @@
-// src/components/MovieCarousel.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './MovieCarousel.css';
@@ -50,13 +49,6 @@ const MovieCarousel = ({ movies }) => {
             />
           ))}
         </div>
-      </div>
-
-      {/* Category Buttons */}
-      <div className="categories">
-        {['Action', 'Comedy', 'Drama', 'Horror', 'Romance'].map((category) => (
-          <button key={category} className="category-button">{category}</button>
-        ))}
       </div>
     </div>
   );

@@ -1,13 +1,21 @@
 // FavoriteButton.js
 
 import React, { useState, useEffect } from 'react';
+import useUser from '../context/useUser';
 import './FavoriteButton.css';
 
 const FavoriteButton = ({ movieId }) => {
+  const { user } = useUser();
   const [isFavorite, setIsFavorite] = useState(false); 
 
   // check favorite state:
   useEffect(() => {
+
+    if (!user.id) {
+      setIsFavorite(false); 
+      return;
+    }
+
     const fetchFavoriteStatus = async () => {
       try {
         const url = `https://api.themoviedb.org/3/movie/${movieId}/account_states?api_key=54c539f0a2dca863d152652c08d28924&session_id=df14e615c6e8a37fc3396968bdc758d8c1e051a0`;
@@ -26,6 +34,12 @@ const FavoriteButton = ({ movieId }) => {
   }, [movieId]);
 
   const handleFavoriteClick = async () => {
+    //check login
+    if (!user.id) {
+      alert("Please log in to add movies to your favorites.");
+      return;
+    }
+    //post data to API
     try {
       const url = 'https://api.themoviedb.org/3/account/21613810/favorite?api_key=54c539f0a2dca863d152652c08d28924&session_id=df14e615c6e8a37fc3396968bdc758d8c1e051a0';
       const options = {

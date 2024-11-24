@@ -1,11 +1,10 @@
 /* src/components/Header.css */
 .header {
-  background-color: #282c34;
+  background-color:lightgray;
   padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: white;
 }
 
 /* Layout for logo, search, and user options */
@@ -14,71 +13,53 @@
   max-width: 1200px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
-.header-logo h1 {
-  margin: 0;
-  font-size: 2rem;
+.homeIcon{
+  height: 3.5rem;
+  width: 3.5rem;
+  display: flex;
+  justify-content: left;
 }
 
-.header-logo a {
-  color: white;
-  text-decoration: none;
+.profileIcon{
+  height: 3.5rem;
+  width: 3.5rem;
+  display: flex;
+  justify-content: right;
 }
 
-/* Centering SearchBar */
-.header-search {
+/* Centering the filters */
+.header-filters {
+  margin-left: 9rem;
   flex: 1;
   display: flex;
-  justify-content: center;
+  justify-content:center;
 }
 
-/* Right-aligned User options */
-.header-user a {
+.login{
+  justify-content: center;
+  color: black;
+  margin: 0 1rem;
+}
+
+.filter-button{
+  background-color: #232323;
   color: white;
-  margin: 0 0.5rem;
-  text-decoration: none;
-}
-
-.header-user a:hover {
-  text-decoration: underline;
-}
-
-/* Filter tags */
-.filter-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 0.5rem;
-  position: relative;
-}
-
-/* Desktop view: Show filter tags below SearchBar */
-.filter-tags-desktop {
-  display: flex;
-}
-
-/* Hide filter tags menu button on large screens */
-.filter-menu-toggle {
-  display: none;
-  background: none;
+  width: 100px;
   border: none;
-  font-size: 1rem;
-  color: white;
+  border-radius: 4px;
   cursor: pointer;
 }
 
-/* Hide filter menu dropdown by default */
-.filter-menu {
-  display: none;
+.login-content{
+  color: black;
 }
 
 /* Mobile styles */
 @media (max-width: 768px) {
   .header-content {
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
   }
 
@@ -99,7 +80,7 @@
     right: 0;
     background-color: #333;
     padding: 1rem;
-    border-radius: 4px;
+    border-radius: 10px;
   }
 }
 .logo-img{
