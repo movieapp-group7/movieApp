@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import App from './App';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
 import Authentication, { AuthenticationMode } from './pages/Authentication';
 import ErrorPage from './pages/ErrorPage';
@@ -21,6 +22,7 @@ import TopRatedMovies from './pages/TopRatedMovies';
 import UpComingMovies from './pages/UpComingMovies';
 import MainLayout from './components/MainLayout';
 import FinnkinoSchedule from './pages/FinnkinoSchedule';
+import PublicShares from './pages/PublicShares';
 
 
 
@@ -76,9 +78,13 @@ const router = createBrowserRouter([
         path: "/groups",
         element: <GroupList />,
       },
+      {
+        path: "share/:shareUrl",
+        element: <PublicShares />,
+      },
 
       {
-        // 需要用户认证的路由
+        // need to login
         element: (
           <>
             {/* <Header /> */}
