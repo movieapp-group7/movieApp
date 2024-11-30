@@ -3,16 +3,20 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './MovieDetail.css';
 import axios from 'axios';
-import ReviewList from '../components/ReviewList';
 import star from "../assets/star.svg"
+import useUser from '../context/useUser';
+import MovieReviewsList from '../components/MovieReviewsList';
 import FavoriteButton from '../components/FavoriteBotton';
 import ReviewForm from '../components/ReviewForm';
 
 
 const MovieDetail = () => {
   const { movieId } = useParams();
+  const { user } = useUser();
   const [movie, setMovie] = useState('');
   const [reviews,setReviews]=useState([]);
+  const [showReviewForm, setShowReviewForm] = useState(false);
+  const [averageRating,setAverageRating] = useState('')
 
   // fetch data
   const fetchMovies = async () => {
@@ -57,10 +61,20 @@ const MovieDetail = () => {
   //get reviews by movieId from database
   const fetchReviews = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/movie/reviews/${movieId}`);
+      const response = await axios.get(`http://localhost:3001/movie/${movieId}/reviews`);
       setReviews(response.data);
     } catch (error) {
       console.error('Error fetching reviews:', error);
+    }
+  }
+
+  const fetchAverageRating = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3001/movie/${movieId}/rating`);
+      setAverageRating(response.data[0].averagerating);
+      console.log(response.data[0].averagerating)
+    } catch (error) {
+      console.error('Error fetching rating:', error);
     }
   }
 
@@ -70,12 +84,15 @@ const MovieDetail = () => {
 
   useEffect(() => {
     fetchMovies();
-    fetchReviews()
+    fetchReviews();
+    fetchAverageRating();
   }, [movieId]);
 
   return (
     <div className="movie-detail">
-      <div className="movie-backdrop">
+      <div className="movie-backdrop" 
+      style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})` }}
+      >
         <div className="movie-title">
           <h1>{movie.title}</h1>
           <p className="movie-tagline">{movie.tagline}</p>
@@ -93,6 +110,7 @@ const MovieDetail = () => {
           <p><img src={star} className='starIcon'></img>{movie.vote_average} / 10 ({movie.vote_count} votes)</p>
           {/* <p><strong>Languages:</strong> {movie.spoken_languages.map(lang => lang.english_name).join(', ')}</p> */}
           <FavoriteButton movieId={movieId} />
+          <span className="average-rating">  {averageRating} / 5.0</span>
           <p><strong>Production Companies:</strong></p>
           {/* <ul>
             {movie.production_companies.map(company => (
@@ -107,10 +125,30 @@ const MovieDetail = () => {
           <p><a href={movie.homepage} target="_blank" rel="noopener noreferrer">Visit Official Website</a></p>
         </div>
       </div>
-      <div className="reviews-info">
-        <h3>Reviews</h3>
-        <ReviewForm movieId={movieId} addReview={addReview}/>
-        <ReviewList reviews={reviews} />
+      <div className="reviews-section">
+        <div className="reviews-header">
+          <h2>Reviews</h2>
+          <button className="add-review-btn" onClick={() => user.id? setShowReviewForm(true) : alert("Please log in to add a review.")}> Add Review </button>
+        </div>
+
+        {showReviewForm && (
+        <div className="modal">
+          <div className="modal-content">
+            <button
+              className="close-modal"
+              onClick={() => setShowReviewForm(false)}
+            >
+              ×
+            </button>
+            <ReviewForm
+              movieId={movieId}
+              addReview={addReview}
+              closeForm={() => setShowReviewForm(false)}
+            />
+          </div>
+        </div>
+      )}
+        <MovieReviewsList reviews={reviews} />
       </div>
     </div>
   );

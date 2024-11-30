@@ -1,19 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import App from './App';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
 import Authentication, { AuthenticationMode } from './pages/Authentication';
 import ErrorPage from './pages/ErrorPage';
-import GroupDetails from './pages/GroupDetails';
 import MovieDetail from './pages/MovieDetail';
-import Profile from './pages/Profile';
+import MyAccountPage from './pages/MyAccountPage';
 // import Header from './components/Header';
 // import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
 import UserProvider from './context/UserProvider';
 import reportWebVitals from './reportWebVitals';
-import ShowTimes from './pages/ShowTimes';
+//import ShowTimes from './pages/ShowTimes';
 import GroupList from './pages/GroupList';
 import SearchedMovies from './pages/SearchedMovies';
 import PopularMovies from './pages/PopularMovies';
@@ -21,6 +21,12 @@ import TopRatedMovies from './pages/TopRatedMovies';
 import UpComingMovies from './pages/UpComingMovies';
 import MainLayout from './components/MainLayout';
 import FinnkinoSchedule from './pages/FinnkinoSchedule';
+import PublicShares from './pages/PublicShares';
+import MyFavoritesPage from './pages/MyFavoritesPage';
+import MyReviewsPage from './pages/MyReviewsPage';
+import MyGroupPage from './pages/MyGroupPage';
+import AllPublicShares from './pages/AllPublicShares';
+import GroupPage from './pages/GroupPage';
 
 
 
@@ -76,9 +82,17 @@ const router = createBrowserRouter([
         path: "/groups",
         element: <GroupList />,
       },
+      {
+        path: "/share/:shareUrl",
+        element: <PublicShares />,
+      },
+      {
+        path: "/shares",
+        element: <AllPublicShares />,
+      },
 
       {
-        // 需要用户认证的路由
+        // need to login
         element: (
           <>
             {/* <Header /> */}
@@ -90,11 +104,27 @@ const router = createBrowserRouter([
           
           {
             path: "/groups/:groupId",
-            element: <GroupDetails />,
+            element: <GroupPage />,
           },
           {
-            path: "/profile",
+            path: "/user/:id/account",
+            element: <MyAccountPage />,
+          },
+          {
+            path: "/user/:id/profile",
             element: <Profile />,
+          },
+          {
+            path: "/user/:id/favorite",
+            element: <MyFavoritesPage />,
+          },
+          {
+            path: "/user/:id/review",
+            element: <MyReviewsPage />,
+          },
+          {
+            path: "/user/:id/group",
+            element: <MyGroupPage />,
           },
         ],
       },

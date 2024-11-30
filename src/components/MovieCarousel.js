@@ -48,6 +48,7 @@ const MovieCarousel = ({ movies }) => {
               onClick={() => setFeaturedMovie(index)}
             />
           ))}
+          <Link to="/showtimes"> &gt;&gt; </Link>
         </div>
       </div>
     </div>
