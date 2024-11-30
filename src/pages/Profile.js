@@ -1,11 +1,40 @@
-import React from 'react'
+import React, {useState} from 'react'
 import FavoriteMovies from '../components/FavoriteMovies'
 import '../pages/Profile.css'
 import useUser from '../context/useUser';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 
 
 export default function Profile() {
-  const { user } = useUser();
+  const { user, signOut } = useUser();
+  const navigate = useNavigate();
+  const url = process.env.REACT_APP_API_URL;
+
+
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+
+  const handleDeleteAccount = async () => {
+    
+      try {
+        const token = sessionStorage.getItem('token'); // Get JWT token for authorization
+        const headers = { headers: { Authorization: `Bearer ${token}` } };
+
+        await axios.delete(url + '/user/delete', { data: { id: user.id }, ...headers });
+        setShowConfirmation(false);
+        signOut();
+        navigate("/signin"); 
+
+      } catch (error) {
+        console.error('Error deleting account:', error);
+        alert('Failed to delete account. Please try again.');
+      }
+    
+  };
+
+
   return (
     <div class="page-container">
       <div style={{textAlign: 'center'}}>
@@ -37,12 +66,27 @@ export default function Profile() {
 
       </div>
 
-      <div class = "Account_delete">
-        <h2>Delete Account </h2>
+      <div className="Account_delete">
+        <h2>Delete Account</h2>
         <p>Are you sure you want to delete your account?</p>
-        <button>Delete Account</button>
+        <button className="confirm-button" onClick={() => setShowConfirmation(true)}>Delete Account</button>
+      </div>
+
+      {showConfirmation && (
+        <div className="confirmation-dialog">
+          <div className="confirmation-content">
+            <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+            <div className="confirmation-buttons">
+              <button className="confirm-button" onClick={handleDeleteAccount}>
+                Yes, Delete
+              </button>
+              <button className="cancel-button" onClick={() => setShowConfirmation(false)}>
+                Cancel
+              </button>
+            </div>
+          </div>
         </div>
-        
+      )}
 
 
     </div>

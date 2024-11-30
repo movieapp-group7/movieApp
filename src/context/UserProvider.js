@@ -51,14 +51,29 @@ export default function UserProvider({children}) {
 
   const signOut = () => {
     setUser({username: '', email: '', password: ''})
-    sessionStorage.removeItem('user')
+    sessionStorage.removeItem('user');
+    sessionStorage.removeItem('token');
+    alert("You have been signed out.")
   }
 
 
+  //.........................................................
+  const deleteAccount = async (id) => {
+    try {
+      const token = sessionStorage.getItem('token');
+      const headers = { headers: { Authorization: `Bearer ${token}` } };
+      const response = await axios.delete(`${url}/delete`, { data: { id }, ...headers });
+      return response.data;
+    } catch (error) {
+      console.error('Error deleting account:', error);
+      throw error;
+    }
+  };
+  //............................................................
 
 
   return (
-    <UserContext.Provider value={{user,setUser,signUp,signIn, signOut}}>
+    <UserContext.Provider value={{user,setUser,signUp,signIn, signOut, deleteAccount}}>
       {children}
     </UserContext.Provider>
   )

@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import './Authentication.css'
-import React, { useState } from "react";
+import React from "react";
 import useUser from "../context/useUser";
 
 export const AuthenticationMode = Object.freeze({
@@ -11,7 +11,7 @@ export const AuthenticationMode = Object.freeze({
 export default function Authentication({authenticationMode}) {
   const {user, setUser, signUp, signIn} = useUser()
   const navigate = useNavigate()
-  const [username, setUsername] = useState(""); 
+  //const [username, setUsername] = useState(""); 
 
   const isPasswordValid = (password) => {
     const hasUpperCase = /[A-Z]/.test(password); // At least one uppercase letter
@@ -31,6 +31,7 @@ export default function Authentication({authenticationMode}) {
     try {
       if (authenticationMode === AuthenticationMode.Register){
         await signUp()
+        alert("Account created successfully. Please sign in.")
         navigate('/signin')
       } else {
         await signIn()
