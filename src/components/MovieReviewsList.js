@@ -1,10 +1,10 @@
 import React from 'react';
 import dayjs from 'dayjs';
-import './ReviewsList.css';
+import './MovieReviewsList.css';
 
-export default function ReviewsList({ reviews }) {
+export default function MovieReviewsList({ reviews }) {
   return (
-    <div className="review-list">
+    <div className="movie-review-list">
       {/* <h2>Reviews</h2> */}
       {reviews.length > 0 ? (
         reviews.map((review) => (
@@ -24,19 +24,9 @@ export default function ReviewsList({ reviews }) {
             </div>
           </div>
         ))
-        //   <ul>
-        //     <li key={review.id}>
-        //       <strong>Email:</strong> {review.email} <br />
-        //       <strong>Rating:</strong> {review.rating} <br />
-        //       <strong>Comment:</strong> {review.comment} <br />
-        //       <strong>Time:</strong> {new Date(review.time).toLocaleString()}
-        //     </li>
-        //   </ul>
-        // ))
       ) : (
         <p>No reviews available.</p>
       )}
     </div>
   );
 }
-

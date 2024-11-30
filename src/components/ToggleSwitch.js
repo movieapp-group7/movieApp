@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import './ToggleSwitch.css'; 
 
-const ToggleSwitch = ({ initialState = false, onToggle }) => {
+const ToggleSwitch = ({ initialState, onToggle }) => {
   const [isOn, setIsOn] = useState(initialState);
 
+  useEffect(() => {
+    setIsOn(initialState);
+  }, [initialState]);
+  
   // switch states
   const handleToggle = () => {
     const newState = !isOn;
