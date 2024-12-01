@@ -1,7 +1,8 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react';
+import axios from 'axios';
+import useUser from '../context/useUser';
 import FavoriteMovies from '../components/FavoriteMovies'
 import '../pages/Profile.css'
-import useUser from '../context/useUser';
 
 
 export default function Profile() {
@@ -18,7 +19,7 @@ export default function Profile() {
 
 
       <div className="username">
-        {/* add a separate font for following username */}
+        {/* add  a separate font for following username */}
         <h3>Username :   { user?.username || 'Not available'}</h3>
         <h3>Email :   { user?.email || 'Not available'}</h3>
       </div>

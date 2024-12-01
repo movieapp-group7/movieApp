@@ -8,6 +8,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import {UserContext} from '../context/UserContext.js'; 
 
+
+
 const filters = [
   { label: 'Top Rated', path: 'movies/toprated' },
   { label: 'Up Coming', path: 'movies/upcoming' },
@@ -19,6 +21,7 @@ const filters = [
 const Header = () => {
   const { user, signOut } = useContext(UserContext);
   const navigate = useNavigate();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleSignOut = () => {
     signOut();
@@ -36,7 +39,15 @@ const Header = () => {
 
         {/* Center: filters */}
         <div className="header-filters">
-          <FilterTags filters={filters}/>
+          <button
+            className="filter-toggle"
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+          >
+            Filters
+          </button>
+          <div className={`filter-dropdown ${isDropdownOpen ? 'open' : ''}`}>
+            <FilterTags filters={filters} />
+          </div>
         </div>
 
         {/* Right side: Login/register or Welcome back */}

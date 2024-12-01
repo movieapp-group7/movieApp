@@ -4,6 +4,7 @@
   max-width: 100%;
   color: white;
   text-align: center;
+  background-color: rgb(232, 232, 232);
 }
 
 .featured-movie {
@@ -37,6 +38,7 @@
 .thumbnail-carousel {
   display: flex;
   align-items: center;
+  background-color: rgb(232, 232, 232);
   justify-content: center;
   margin-top: 20px;
   position: relative;
