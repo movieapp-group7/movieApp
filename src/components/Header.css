@@ -5,14 +5,42 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 }
 
 /* Layout for logo, search, and user options */
 .header-content {
+  position: relative;
   width: 100%;
   max-width: 1200px;
   display: flex;
   align-items: center;
+}
+
+.filter-toggle {
+  display: none; /* Hidden by default for larger screens */
+  background: black;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.filter-dropdown {
+  display: none;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background: lightgray;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 10;
+}
+
+.filter-dropdown.open {
+  display: block;
 }
 
 .homeIcon{
@@ -31,7 +59,7 @@
 
 /* Centering the filters */
 .header-filters {
-  margin-left: 9rem;
+  margin-left: 12%;
   flex: 1;
   display: flex;
   justify-content:center;
@@ -56,31 +84,28 @@
   color: black;
 }
 
-/* Mobile styles */
-@media (max-width: 768px) {
-  .header-content {
-    flex-direction: row;
-    align-items: center;
+@media (min-width: 769px) {
+  .filter-toggle {
+    display: none;
   }
 
-  /* Filter tags become a dropdown menu */
-  .filter-tags-desktop {
-    display: none;  /* Hide the default filter tags below SearchBar */
-  }
-
-  .filter-menu-toggle {
-    display: inline;  /* Show menu toggle button */
-    margin-left: 1rem;
-  }
-
-  .filter-menu {
+  .filter-dropdown {
     display: block;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: #333;
-    padding: 1rem;
-    border-radius: 10px;
+    position: static;
+    box-shadow: none;
+    background-color: lightgray;
+    padding: 0;
   }
 }
 
+/* Filters for smaller screens */
+@media (max-width: 768px) {
+  .filter-toggle {
+    display: inline-block;
+  }
+
+  .filter-dropdown {
+    border: 1px black solid;
+    display: none;
+  }
+}

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import "./ShowTimesFinnkino.css"
+
 
 const ShowTimesFinnkino = () => {
   const [schedule, setSchedule] = useState([]);
@@ -100,26 +102,29 @@ const ShowTimesFinnkino = () => {
   }, [movieName, location, date, schedule]);
 
   return (
-    <div>
+    <div className='Background'>
+      <h1 className='Maintext'>Finnkino Schedule</h1>
       {/* Search Form */}
-      <div>
+      <div className='Filters'>
         <input
           type="text"
           placeholder="Search by Movie Name"
           value={movieName}
           onChange={(e) => setMovieName(e.target.value)}
+          className='Filter'
         />
         <input
           type="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
+          className='Filter'
         />
-        <select value={area} onChange={(e) => setArea(e.target.value)}>
+        <select className='Filter-select' value={area} onChange={(e) => setArea(e.target.value)}>
           {theatreAreas.map(area => (
             <option key={area.id} value={area.id}>{area.name}</option>
           ))}
         </select>
-        <select value={nrOfDays} onChange={(e) => setNrOfDays(e.target.value)}>
+        <select className="Filter-select" value={nrOfDays} onChange={(e) => setNrOfDays(e.target.value)}>
           <option value="1">1 day</option>
           <option value="2">2 days</option>
           <option value="3">3 days</option>
@@ -129,14 +134,27 @@ const ShowTimesFinnkino = () => {
       </div>
 
       {/* Schedule List */}
-      <ul>
+      <ul className='Schedule'>
+        <div className='Table' >
+          <p className='Table-content'>Movie</p>
+          <p className='Table-content'>Date/Time</p>
+          <p className='Table-content'>Theatre</p>
+        </div>
         {filteredSchedule.length === 0 ? (
-          <p>No results found</p>
+          <p className='Movie'>No results found</p>
         ) : (
           filteredSchedule.map((movie, index) => (
-            <li key={index}>
-              {movie.title} - {movie.showTime} at {movie.theatre}
-            </li>
+            <div className='MovieTable'>
+              <li className='Movie' key={index}>
+                {movie.title}
+              </li>
+              <li className='Movie' key={index}>
+               {movie.showTime}
+              </li>
+              <li className='Movie' key={index}>
+                {movie.theatre}
+              </li>
+            </div>
           ))
         )}
       </ul>
