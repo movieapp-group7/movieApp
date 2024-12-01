@@ -10,7 +10,7 @@ const MovieCarousel = ({ movies }) => {
 
   if (!movies.length) return <div>Loading...</div>; // Loading message if movies array is empty
 
-  // Set main featured movie when a thumbnail is clicked
+  // Set main featured movie when a thum bnail is clicked
   const setFeaturedMovie = (index) => {
     setCurrentIndex(index);
   };
