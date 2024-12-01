@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import React, { useEffect } from 'react';
+
 import './ToggleSwitch.css'; 
 
 const ToggleSwitch = ({ initialState, onToggle }) => {

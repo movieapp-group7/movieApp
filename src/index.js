@@ -111,10 +111,10 @@ const router = createBrowserRouter([
             path: "/user/:id/account",
             element: <MyAccountPage />,
           },
-          {
-            path: "/user/:id/profile",
-            element: <Profile />,
-          },
+          // {
+          //   path: "/user/:id/profile",
+          //   element: <Profile />,
+          // },
           {
             path: "/user/:id/favorite",
             element: <MyFavoritesPage />,
