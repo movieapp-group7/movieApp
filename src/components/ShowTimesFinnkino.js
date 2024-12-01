@@ -66,7 +66,7 @@ const ShowTimesFinnkino = () => {
           }
 
           setSchedule(scheduleData);
-          setFilteredSchedule(scheduleData); // Init list
+          setFilteredSchedule(scheduleData); //  Init list
         })
         .catch((error) => console.error("Error fetching Finnkino schedule:", error));
     };

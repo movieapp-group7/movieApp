@@ -68,7 +68,7 @@ const router = createBrowserRouter([
         element: <UpComingMovies />,
       },
       // {
-      //   path: "/movies/nowplaying",
+      //   path: "/movies /nowplaying",
       //   element: <NowPlayingMovies />,
       // },
       {

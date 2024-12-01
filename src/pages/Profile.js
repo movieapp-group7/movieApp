@@ -19,7 +19,7 @@ export default function Profile() {
 
 
       <div className="username">
-        {/* add a separate font for following username */}
+        {/* add  a separate font for following username */}
         <h3>Username :   { user?.username || 'Not available'}</h3>
         <h3>Email :   { user?.email || 'Not available'}</h3>
       </div>
