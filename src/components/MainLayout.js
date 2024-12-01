@@ -3,9 +3,10 @@ import Header from './Header';
 import Footer from './Footer';
 import { Outlet } from 'react-router-dom';
 import SearchBar from './SearchBar';
+import "./MainLayout.css"
 
 const MainLayout = () => (
-  <div>
+  <div className='Background'>
     <Header />
     <SearchBar/>
     <main>
