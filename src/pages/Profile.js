@@ -3,7 +3,6 @@ import axios from 'axios';
 import useUser from '../context/useUser';
 import FavoriteMovies from '../components/FavoriteMovies'
 import '../pages/Profile.css'
-import useUser from '../context/useUser';
 
 
 export default function Profile() {
