@@ -86,6 +86,11 @@
     justify-content: center;
 }
 
+.MovieTable.selected {
+    background-color: #709170; 
+    border: 2px solid #1d451f; 
+  }
+
 .Background{
     background-color: rgb(232, 232, 232);
 }

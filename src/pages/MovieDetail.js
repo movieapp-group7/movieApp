@@ -8,6 +8,7 @@ import useUser from '../context/useUser';
 import MovieReviewsList from '../components/MovieReviewsList';
 import FavoriteButton from '../components/FavoriteBotton';
 import ReviewForm from '../components/ReviewForm';
+import GroupSelectionModal from '../components/GroupSelection';
 
 
 const MovieDetail = () => {
@@ -17,6 +18,7 @@ const MovieDetail = () => {
   const [reviews,setReviews]=useState([]);
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [averageRating,setAverageRating] = useState('')
+  const [showGroup, setShowGroup] = useState(false);
 
   // fetch data
   const fetchMovies = async () => {
@@ -78,6 +80,10 @@ const MovieDetail = () => {
     }
   }
 
+  const handleAddToGroup = (movie) => {
+    setShowGroup(true); 
+  };
+
   const addReview = (newReview) => {
     setReviews((prevReviews) => [newReview,...prevReviews]);
   };
@@ -86,7 +92,7 @@ const MovieDetail = () => {
     fetchMovies();
     fetchReviews();
     fetchAverageRating();
-  }, [movieId]);
+  }, [movieId,user]);
 
   return (
     <div className="movie-detail">
@@ -123,8 +129,20 @@ const MovieDetail = () => {
             ))}
           </ul> */}
           <p><a href={movie.homepage} target="_blank" rel="noopener noreferrer">Visit Official Website</a></p>
+          <button onClick={() => handleAddToGroup(movie)}>Add to group</button>
         </div>
       </div>
+
+      
+      {/* add to group */}
+      
+      {showGroup && (
+        <GroupSelectionModal
+          movie={movie}
+          onClose={() => setShowGroup(false)}
+        />
+      )}
+
       <div className="reviews-section">
         <div className="reviews-header">
           <h2>Reviews</h2>
