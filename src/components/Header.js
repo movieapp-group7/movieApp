@@ -90,7 +90,7 @@ const Header = () => {
           />
           {isDropdownOpen && (
             <div className="dropdown-menu">
-              <div onClick={() => handleNavigate(`/user/${user.id}/account`)} className="dropdown-item">My Account</div>
+              <div onClick={() => handleNavigate(`/profile`)} className="dropdown-item">My Account</div>
               <div onClick={() => handleNavigate(`/user/${user.id}/favorite`)} className="dropdown-item">My Favorites</div>
               <div onClick={() => handleNavigate(`/user/${user.id}/review`)} className="dropdown-item">My Reviews</div>
               <div onClick={() => handleNavigate(`/user/${user.id}/group`)} className="dropdown-item">My Groups</div>
