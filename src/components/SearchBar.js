@@ -26,6 +26,7 @@ const SearchBar = () => {
     if (searchTitle.trim()) { 
       navigate('/movies/title/' + searchTitle);
     }
+    setSearchTitle('')
   };
 
   return (

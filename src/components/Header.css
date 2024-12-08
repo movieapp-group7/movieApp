@@ -5,14 +5,42 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 }
 
 /* Layout for logo, search, and user options */
 .header-content {
+  position: relative;
   width: 100%;
   max-width: 1200px;
   display: flex;
   align-items: center;
+}
+
+.filter-toggle {
+  display: none; /* Hidden by default for larger screens */
+  background: black;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.filter-dropdown {
+  display: none;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background: lightgray;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 10;
+}
+
+.filter-dropdown.open {
+  display: block;
 }
 
 .homeIcon{
@@ -29,9 +57,38 @@
   justify-content: right;
 }
 
+.dropdown-menu {
+  position: absolute;
+  top: 50px; /* 根据头像位置调整 */
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-item {
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdown-item:last-child {
+  color: red;
+}
 /* Centering the filters */
 .header-filters {
-  margin-left: 9rem;
+  margin-left: 12%;
   flex: 1;
   display: flex;
   justify-content:center;
@@ -56,31 +113,28 @@
   color: black;
 }
 
-/* Mobile styles */
-@media (max-width: 768px) {
-  .header-content {
-    flex-direction: row;
-    align-items: center;
+@media (min-width: 769px) {
+  .filter-toggle {
+    display: none;
   }
 
-  /* Filter tags become a dropdown menu */
-  .filter-tags-desktop {
-    display: none;  /* Hide the default filter tags below SearchBar */
-  }
-
-  .filter-menu-toggle {
-    display: inline;  /* Show menu toggle button */
-    margin-left: 1rem;
-  }
-
-  .filter-menu {
+  .filter-dropdown {
     display: block;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: #333;
-    padding: 1rem;
-    border-radius: 10px;
+    position: static;
+    box-shadow: none;
+    background-color: lightgray;
+    padding: 0;
   }
 }
 
+/* Filters for smaller screens */
+@media (max-width: 768px) {
+  .filter-toggle {
+    display: inline-block;
+  }
+
+  .filter-dropdown {
+    border: 1px black solid;
+    display: none;
+  }
+}

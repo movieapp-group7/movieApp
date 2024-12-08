@@ -8,20 +8,39 @@ import { Link, useNavigate } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import {UserContext} from '../context/UserContext.js'; 
 
+
+
 const filters = [
   { label: 'Top Rated', path: 'movies/toprated' },
   { label: 'Up Coming', path: 'movies/upcoming' },
   { label: 'Most Popular', path: 'movies/popular' },
   { label: 'Show Times', path: 'showtimes' },
-  { label: 'Groups', path: 'groups' }
+  { label: 'Groups', path: 'groups' },
+  {label:'Shares', path:'shares'}
 ];
 
 const Header = () => {
   const { user, signOut } = useContext(UserContext);
   const navigate = useNavigate();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleSignOut = () => {
     signOut();
+    navigate("/signin"); 
+  };
+
+  
+  const toggleDropdown = () => {
+    setIsDropdownOpen((prevState) => !prevState);
+  };
+
+  const handleNavigate = (path) => {
+    setIsDropdownOpen(false); 
+    navigate(path);
+  };
+
+  const handleDeleteAccount = () => {
+    // deleteAccount();
     navigate("/signin"); 
   };
 
@@ -36,14 +55,22 @@ const Header = () => {
 
         {/* Center: filters */}
         <div className="header-filters">
-          <FilterTags filters={filters}/>
+          <button
+            className="filter-toggle"
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+          >
+            Filters
+          </button>
+          <div className={`filter-dropdown ${isDropdownOpen ? 'open' : ''}`}>
+            <FilterTags filters={filters} />
+          </div>
         </div>
 
         {/* Right side: Login/register or Welcome back */}
         <div className='login'>
           {user && user.email ? (
               <>
-                <Link to="/profile" className='login-content'>Account</Link> | <Link onClick={handleSignOut} className='login-content'>Sign Out</Link>
+                <Link onClick={handleSignOut} className='login-content'>Sign Out</Link>
               </>
             ) : (
              <>
@@ -55,7 +82,22 @@ const Header = () => {
 
         {/* Right side: Profile icon */}
         <div className="header-user">
-          <Link to="/profile"><img src={profileIcon} className='profileIcon'></img></Link>
+          <img 
+          src={profileIcon}
+          className='profileIcon'
+          alt="Profile"
+          onClick={toggleDropdown}
+          />
+          {isDropdownOpen && (
+            <div className="dropdown-menu">
+              <div onClick={() => handleNavigate(`/user/${user.id}/account`)} className="dropdown-item">My Account</div>
+              <div onClick={() => handleNavigate(`/user/${user.id}/favorite`)} className="dropdown-item">My Favorites</div>
+              <div onClick={() => handleNavigate(`/user/${user.id}/review`)} className="dropdown-item">My Reviews</div>
+              <div onClick={() => handleNavigate(`/user/${user.id}/group`)} className="dropdown-item">My Groups</div>
+              {/*<div onClick={() => handleNavigate(`/user/${user.id}/settings`)} className="dropdown-item">Account settings</div> */}
+              <div onClick={handleDeleteAccount} className="dropdown-item">Delete Account</div>
+            </div>
+          )}
         </div>
       </div>
     </header>

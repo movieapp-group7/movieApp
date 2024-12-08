@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import useUser from '../context/useUser';
+import dayjs from 'dayjs';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import "./ShowTimesFinnkino.css"
+
+const url = process.env.REACT_APP_API_URL
 
 const ShowTimesFinnkino = () => {
+  const { user } = useUser();
   const [schedule, setSchedule] = useState([]);
   const [filteredSchedule, setFilteredSchedule] = useState([]);
   const [movieName, setMovieName] = useState('');
@@ -8,6 +16,12 @@ const ShowTimesFinnkino = () => {
   const [date, setDate] = useState('');
   const [nrOfDays, setNrOfDays] = useState(1);
   const [area, setArea] = useState('1029');
+  const [selectedShowtimes, setSelectedShowtimes] = useState([]);
+  const [searchParams] = useSearchParams(); 
+
+  const groupId = searchParams.get('addToGroup'); 
+
+  const navigate = useNavigate();
 
   const theatreAreas = [
     { id: '1029', name: 'Choose Location' },
@@ -64,7 +78,7 @@ const ShowTimesFinnkino = () => {
           }
 
           setSchedule(scheduleData);
-          setFilteredSchedule(scheduleData); // Init list
+          setFilteredSchedule(scheduleData); //  Init list
         })
         .catch((error) => console.error("Error fetching Finnkino schedule:", error));
     };
@@ -99,27 +113,67 @@ const ShowTimesFinnkino = () => {
     setFilteredSchedule(filtered);
   }, [movieName, location, date, schedule]);
 
+  // Handle showtime selection
+  const handleSelectShowtime = (showtime) => {
+    setSelectedShowtimes((prevSelected) => {
+      if (prevSelected.includes(showtime)) {
+        return prevSelected.filter(item => item !== showtime);
+      } else {
+        return [...prevSelected, showtime];
+      }
+    });
+  };
+
+  const handleAddShowtimesToGroup = async () => {
+    if (!groupId || selectedShowtimes.length === 0) {
+      alert('Please select at least one showtime and a valid group.');
+      return;
+    }
+
+    try {
+      const addPromises = selectedShowtimes.map((showtime) =>
+        axios.post(`${url}/group/${groupId}/addshowtime`, {
+          userId: user.id,
+          movieTitle: showtime.title,
+          showTime: showtime.showTime,
+          theatre: showtime.theatre,
+          description: `${showtime.title} will be shown on ${dayjs(showtime.showTime).format('YYYY-MM-DD HH:mm:ss')} at ${showtime.theatre} `
+        })
+      );
+
+      await Promise.all(addPromises);
+      alert('Showtimes added to group successfully!');
+      navigate(`/groups/${groupId}`);
+    } catch (error) {
+      console.error('Error adding showtimes to group:', error);
+      alert('Failed to add showtimes to group, please try again.');
+    }
+  };
+
   return (
-    <div>
+    <div className='Background'>
+      <h1 className='Maintext'>Finnkino Schedule</h1>
       {/* Search Form */}
-      <div>
+      <div className='Filters'>
         <input
           type="text"
           placeholder="Search by Movie Name"
           value={movieName}
           onChange={(e) => setMovieName(e.target.value)}
+          className='Filter'
         />
         <input
           type="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
+          className='Filter'
         />
-        <select value={area} onChange={(e) => setArea(e.target.value)}>
+        <select className='Filter-select' value={area} onChange={(e) => setArea(e.target.value)}>
           {theatreAreas.map(area => (
             <option key={area.id} value={area.id}>{area.name}</option>
           ))}
         </select>
-        <select value={nrOfDays} onChange={(e) => setNrOfDays(e.target.value)}>
+        <select className="Filter-select" value={nrOfDays} onChange={(e) => setNrOfDays(e.target.value)}>
           <option value="1">1 day</option>
           <option value="2">2 days</option>
           <option value="3">3 days</option>
@@ -129,17 +183,41 @@ const ShowTimesFinnkino = () => {
       </div>
 
       {/* Schedule List */}
-      <ul>
+      <ul className='Schedule'>
+        <div className='Table' >
+          <p className='Table-content'>Movie</p>
+          <p className='Table-content'>Date/Time</p>
+          <p className='Table-content'>Theatre</p>
+        </div>
         {filteredSchedule.length === 0 ? (
-          <p>No results found</p>
+          <p className='Movie'>No results found</p>
         ) : (
           filteredSchedule.map((movie, index) => (
-            <li key={index}>
-              {movie.title} - {movie.showTime} at {movie.theatre}
-            </li>
+            <div
+              key={index}
+              className={`MovieTable ${selectedShowtimes.includes(movie) ? 'selected' : ''}`}
+              onClick={() => handleSelectShowtime(movie)}
+            >
+              <li className='Movie' key={index}>
+              {dayjs(movie.showTime).format('YYYY-MM-DD HH:mm:ss')}
+              </li>
+              <li className='Movie' key={index}>
+                {movie.theatre}
+              </li>
+            </div>
           ))
         )}
       </ul>
+      {/* Add to Group Button */}
+      {groupId && (
+        <button
+          className="add-to-group-button"
+          onClick={handleAddShowtimesToGroup}
+          disabled={selectedShowtimes.length === 0}
+        >
+          Add Selected Showtimes to Group
+        </button>
+      )}
     </div>
     )
   };
