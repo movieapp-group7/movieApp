@@ -9,7 +9,9 @@
 
 /* 搜索框样式 */
 .group-page-container .search-input {
-  width: 70%;
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -26,16 +28,20 @@
   font-size: 24px;
   font-weight: bold;
   margin: 0;
+  background-color: #232323;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
 }
 
 /* 创建按钮样式 */
 .create-button {
   padding: 10px 20px;
-  background-color: lightgray;
+  background-color: gray;
   color: #fff;
   border: none;
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 24px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
