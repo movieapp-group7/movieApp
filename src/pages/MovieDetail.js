@@ -8,15 +8,18 @@ import useUser from '../context/useUser';
 import MovieReviewsList from '../components/MovieReviewsList';
 import FavoriteButton from '../components/FavoriteBotton';
 import ReviewForm from '../components/ReviewForm';
+import GroupSelectionModal from '../components/GroupSelection';
+import RecommendMovies from '../components/RecommendMovies';
 
 
 const MovieDetail = () => {
   const { movieId } = useParams();
   const { user } = useUser();
-  const [movie, setMovie] = useState('');
+  const [movie, setMovie] = useState({});
   const [reviews,setReviews]=useState([]);
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [averageRating,setAverageRating] = useState('')
+  const [showGroup, setShowGroup] = useState(false);
 
   // fetch data
   const fetchMovies = async () => {
@@ -37,26 +40,6 @@ const MovieDetail = () => {
       console.error('Failed to fetch movies:', error);
     }
   };
-  
-  /*//get reviews from API
-  const fetchReviews = async () => {
-    const url = `https://api.themoviedb.org/3/movie/${movieId}/reviews`;
-    const options = {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NGM1MzlmMGEyZGNhODYzZDE1MjY1MmMwOGQyODkyNCIsIm5iZiI6MTczMDkzMzU5Ny4wNDU3NjksInN1YiI6IjY3MmIwY2VlMmY2NGViZThjOGU0ZGVmYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6pw2lCXSmmNW75P1F8EVCq-dMxYpyPwn2QcF3f7PV7Y', 
-      },
-    };
-
-    try {
-      const response = await fetch(url, options);
-      const data = await response.json();
-      setReviews(data.results);
-    } catch (error) {
-      console.error('Failed to fetch movies:', error);
-    }
-  };*/
 
   //get reviews by movieId from database
   const fetchReviews = async () => {
@@ -78,6 +61,10 @@ const MovieDetail = () => {
     }
   }
 
+  const handleAddToGroup = (movie) => {
+    setShowGroup(true); 
+  };
+
   const addReview = (newReview) => {
     setReviews((prevReviews) => [newReview,...prevReviews]);
   };
@@ -86,7 +73,10 @@ const MovieDetail = () => {
     fetchMovies();
     fetchReviews();
     fetchAverageRating();
-  }, [movieId]);
+  }, [movieId,user]);
+
+  console.log(movie)
+  console.log(movie.genres)
 
   return (
     <div className="movie-detail">
@@ -103,28 +93,37 @@ const MovieDetail = () => {
         <img className="movie-poster" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
 
         <div className="movie-details">
+          {/* genres */} 
+          <div className="genre-tags">
+            {movie.genres && movie.genres.map((genre) => (
+              <span key={genre.id} className={`genre-tag genre-${genre.id}`}>
+                {genre.name}
+              </span>
+            ))}
+          </div>
+
           <p><strong>Overview:</strong> {movie.overview}</p>
-          {/* <p><strong>Genres:</strong> {movie.genres.map(genre => genre.name).join(', ')}</p> */}
           <p><strong>Release Date:</strong> {movie.release_date}</p>
           <p><strong>Runtime:</strong> {movie.runtime} minutes</p>
-          <p><img src={star} className='starIcon'></img>{movie.vote_average} / 10 ({movie.vote_count} votes)</p>
-          {/* <p><strong>Languages:</strong> {movie.spoken_languages.map(lang => lang.english_name).join(', ')}</p> */}
-          <FavoriteButton movieId={movieId} />
           <span className="average-rating">  {averageRating} / 5.0</span>
-          <p><strong>Production Companies:</strong></p>
-          {/* <ul>
-            {movie.production_companies.map(company => (
-              <li key={company.id}>
-                {company.logo_path ? (
-                  <img src={`https://image.tmdb.org/t/p/w200${company.logo_path}`} alt={company.name} className="company-logo" />
-                ) : null}
-                {company.name}
-              </li>
-            ))}
-          </ul> */}
+          <FavoriteButton movieId={movieId} />
+          
+         
           <p><a href={movie.homepage} target="_blank" rel="noopener noreferrer">Visit Official Website</a></p>
+          <button className='add-group-button' onClick={() => handleAddToGroup(movie)}>Add to group</button>
         </div>
       </div>
+
+      
+      {/* add to group */}
+      
+      {showGroup && (
+        <GroupSelectionModal
+          movie={movie}
+          onClose={() => setShowGroup(false)}
+        />
+      )}
+
       <div className="reviews-section">
         <div className="reviews-header">
           <h2>Reviews</h2>
@@ -150,6 +149,10 @@ const MovieDetail = () => {
       )}
         <MovieReviewsList reviews={reviews} />
       </div>
+
+       {/* recommendation */}
+       {movie.genres&&(<RecommendMovies genres={movie.genres} />)}
+
     </div>
   );
 };

@@ -27,7 +27,6 @@ import MyReviewsPage from './pages/MyReviewsPage';
 import MyGroupPage from './pages/MyGroupPage';
 import AllPublicShares from './pages/AllPublicShares';
 import GroupPage from './pages/GroupPage';
-import Profile from "./pages/Profile";
 
 
 
@@ -111,10 +110,6 @@ const router = createBrowserRouter([
             path: "/user/:id/account",
             element: <MyAccountPage />,
           },
-          // {
-          //   path: "/user/:id/profile",
-          //   element: <Profile />,
-          // },
           {
             path: "/user/:id/favorite",
             element: <MyFavoritesPage />,
