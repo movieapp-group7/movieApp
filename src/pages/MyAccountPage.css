@@ -55,7 +55,7 @@ h1 {
   gap: 10px;
 }
 
-button {
+.button-group button {
   padding: 10px 20px;
   border: none;
   border-radius: 6px;
@@ -65,12 +65,12 @@ button {
   transition: background-color 0.3s ease;
 }
 
-button:hover {
+.button-group button:hover {
   background-color: #0056b3;
   color: #fff;
 }
 
-button:disabled {
+.button-group button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }

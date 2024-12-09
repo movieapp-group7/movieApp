@@ -1,4 +1,3 @@
-/* src/pages/MovieDetail.css */
 
 .movie-detail {
   color: #333;
@@ -68,11 +67,6 @@ ul {
   padding: 0;
 }
 
-.company-logo {
-  max-height: 30px;
-  margin-right: 10px;
-  vertical-align: middle;
-}
 
 a {
   color: #007bff;
@@ -188,3 +182,17 @@ a:hover {
 .genre-10752 { background-color: #253444; } /* Kriegsfilm */
 .genre-37 { background-color: #bf7e16; } /* Western */
 
+.add-group-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-group-button:hover {
+  background-color: #0056b3;
+  color: #fff;
+}

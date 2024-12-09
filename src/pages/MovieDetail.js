@@ -105,11 +105,12 @@ const MovieDetail = () => {
           <p><strong>Overview:</strong> {movie.overview}</p>
           <p><strong>Release Date:</strong> {movie.release_date}</p>
           <p><strong>Runtime:</strong> {movie.runtime} minutes</p>
-          <FavoriteButton movieId={movieId} />
           <span className="average-rating">  {averageRating} / 5.0</span>
+          <FavoriteButton movieId={movieId} />
+          
          
           <p><a href={movie.homepage} target="_blank" rel="noopener noreferrer">Visit Official Website</a></p>
-          <button onClick={() => handleAddToGroup(movie)}>Add to group</button>
+          <button className='add-group-button' onClick={() => handleAddToGroup(movie)}>Add to group</button>
         </div>
       </div>
 
@@ -151,7 +152,7 @@ const MovieDetail = () => {
 
        {/* recommendation */}
        {movie.genres&&(<RecommendMovies genres={movie.genres} />)}
-       
+
     </div>
   );
 };
