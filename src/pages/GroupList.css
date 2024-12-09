@@ -31,7 +31,7 @@
 /* create section */
 .create-button {
   padding: 10px 20px;
-  background-color: lightgray;
+  background-color: #45a049;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -41,7 +41,7 @@
 }
 
 .create-button:hover {
-  background-color: lightgray;
+  background-color: green;
 }
 
 /* input new group */

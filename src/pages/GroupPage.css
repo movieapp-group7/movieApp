@@ -1,12 +1,12 @@
-/* GroupPage container */
+
 .group-page {
   width: 80%;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f9f9f9; /* 浅灰色背景 */
-  border-radius: 10px; /* 圆角边框 */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 轻微阴影 */
-  position: relative; /* 相对定位 */
+  background-color: #f9f9f9; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  position: relative; 
 }
 
 /* Group details section */
@@ -19,10 +19,11 @@
 }
 
 .group-page .group-header img {
-  border-radius: 8px; /* 圆角图片 */
   width: 150px;
-  height: auto;
-  object-fit: cover;
+  height: 150px; 
+  border-radius: 8px;
+  object-fit: cover; 
+  aspect-ratio: 1 / 1;
 }
 
 .group-page .group-header-info {
@@ -60,8 +61,8 @@
   position: absolute;
   top: 10px;
   right: 20px;
-  background: none; /* 无背景 */
-  color: #777; /* 灰色字体 */
+  background: none; 
+  color: #777; 
   border: none;
   font-size: 1em;
   cursor: pointer;
@@ -73,21 +74,21 @@
 }
 
 .group-page .button-delete {
-  background-color: #f44336; /* 红色 */
+  background-color: #f44336; 
   color: white;
 }
 
 .group-page .button-delete:hover {
-  background-color: #d32f2f; /* 悬停时的红色 */
+  background-color: #d32f2f; 
 }
 
 .group-page .button-leave {
-  background-color: #2196F3; /* 蓝色 */
+  background-color: #2196F3; 
   color: white;
 }
 
 .group-page .button-leave:hover {
-  background-color: #1976D2; /* 悬停时的蓝色 */
+  background-color: #1976D2; 
 }
 
 /* Members list */
@@ -109,7 +110,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #ffffff; /* 白色背景 */
+  background-color: #ffffff; 
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
@@ -131,7 +132,7 @@
 }
 
 .group-page .member-list li .remove-button:hover {
-  background-color: #d32f2f; /* 悬停时的红色 */
+  background-color: #d32f2f; 
 }
 
 
