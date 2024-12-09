@@ -10,6 +10,7 @@ import {UserContext} from '../context/UserContext.js';
 
 
 
+
 const filters = [
   { label: 'Top Rated', path: 'movies/toprated' },
   { label: 'Up Coming', path: 'movies/upcoming' },
@@ -94,6 +95,7 @@ const Header = () => {
               <div onClick={() => handleNavigate(`/user/${user.id}/favorite`)} className="dropdown-item">My Favorites</div>
               <div onClick={() => handleNavigate(`/user/${user.id}/review`)} className="dropdown-item">My Reviews</div>
               <div onClick={() => handleNavigate(`/user/${user.id}/group`)} className="dropdown-item">My Groups</div>
+              <div onClick={() => handleNavigate(`/user/${user.id}/watchList`)} className="dropdown-item">My Watchlist</div> {/* Added My Watchlist */}
               {/*<div onClick={() => handleNavigate(`/user/${user.id}/settings`)} className="dropdown-item">Account settings</div> */}
               <div onClick={handleDeleteAccount} className="dropdown-item">Delete Account</div>
             </div>

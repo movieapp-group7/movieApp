@@ -9,6 +9,8 @@ import MovieReviewsList from '../components/MovieReviewsList';
 import FavoriteButton from '../components/FavoriteBotton';
 import ReviewForm from '../components/ReviewForm';
 import GroupSelectionModal from '../components/GroupSelection';
+import WatchListButton from '../components/WatchListButton';
+import WatchlistModal from '../components/WatchlistModal';
 
 
 const MovieDetail = () => {
@@ -19,6 +21,7 @@ const MovieDetail = () => {
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [averageRating,setAverageRating] = useState('')
   const [showGroup, setShowGroup] = useState(false);
+  const [showWatchlistModal, setShowWatchlistModal] = useState(false);
 
   // fetch data
   const fetchMovies = async () => {
@@ -88,6 +91,14 @@ const MovieDetail = () => {
     setReviews((prevReviews) => [newReview,...prevReviews]);
   };
 
+  const handleAddToWatchlist = () => {
+    setShowWatchlistModal(true);
+  };
+  
+  const handleCloseWatchlistModal = () => {
+    setShowWatchlistModal(false);
+  };
+
   useEffect(() => {
     fetchMovies();
     fetchReviews();
@@ -130,6 +141,8 @@ const MovieDetail = () => {
           </ul> */}
           <p><a href={movie.homepage} target="_blank" rel="noopener noreferrer">Visit Official Website</a></p>
           <button onClick={() => handleAddToGroup(movie)}>Add to group</button>
+          <button onClick={ handleAddToWatchlist}>Add to Watchlist</button>
+          
         </div>
       </div>
 
@@ -140,6 +153,13 @@ const MovieDetail = () => {
         <GroupSelectionModal
           movie={movie}
           onClose={() => setShowGroup(false)}
+        />
+      )}
+
+      {showWatchlistModal && (
+        <WatchlistModal
+          movie={movie}
+          onClose={handleCloseWatchlistModal}
         />
       )}
 

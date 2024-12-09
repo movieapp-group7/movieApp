@@ -28,7 +28,7 @@ import MyGroupPage from './pages/MyGroupPage';
 import AllPublicShares from './pages/AllPublicShares';
 import GroupPage from './pages/GroupPage';
 import Profile from "./pages/Profile";
-
+import WatchlistPage from './pages/WatchListPage'
 
 
 const router = createBrowserRouter([
@@ -126,6 +126,10 @@ const router = createBrowserRouter([
           {
             path: "/user/:id/group",
             element: <MyGroupPage />,
+          },
+          {
+            path: "/user/:id/watchlist",
+            element: <WatchlistPage />,
           },
         ],
       },
