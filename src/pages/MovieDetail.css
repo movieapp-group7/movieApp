@@ -55,10 +55,17 @@
   margin: 10px;
 }
 
+.rating:before {
+  content: "★";
+  font-size: 1.2rem;
+  color: black;
+  margin-right: 4px;
+}
+
 .average-rating:before {
   content: "★";
   font-size: 1.2rem;
-  color: gold;
+  color: black;
   margin-right: 4px;
 }
 
@@ -81,6 +88,7 @@ a:hover {
   margin-top: 2rem;
 }
 .reviews-header {
+  margin-top: 20px;
   display: flex; 
   justify-content: space-between; 
   align-items: center;

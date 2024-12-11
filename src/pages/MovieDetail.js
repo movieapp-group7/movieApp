@@ -80,9 +80,7 @@ const MovieDetail = () => {
 
   return (
     <div className="movie-detail">
-      <div className="movie-backdrop" 
-      style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})` }}
-      >
+      <div className="movie-backdrop">
         <div className="movie-title">
           <h1>{movie.title}</h1>
           <p className="movie-tagline">{movie.tagline}</p>
@@ -105,10 +103,21 @@ const MovieDetail = () => {
           <p><strong>Overview:</strong> {movie.overview}</p>
           <p><strong>Release Date:</strong> {movie.release_date}</p>
           <p><strong>Runtime:</strong> {movie.runtime} minutes</p>
-          <span className="average-rating">  {averageRating} / 5.0</span>
+          <p className="rating">{movie.vote_average} / 10 ({movie.vote_count} votes)</p>
+          {/* <p><strong>Languages:</strong> {movie.spoken_languages.map(lang => lang.english_name).join(', ')}</p> */}
           <FavoriteButton movieId={movieId} />
-          
-         
+          <p className="average-rating">  {averageRating} / 5.0</p>
+          <p><strong>Production Companies:</strong></p>
+          {/* <ul>
+            {movie.production_companies.map(company => (
+              <li key={company.id}>
+                {company.logo_path ? (
+                  <img src={`https://image.tmdb.org/t/p/w200${company.logo_path}`} alt={company.name} className="company-logo" />
+                ) : null}
+                {company.name}
+              </li>
+            ))}
+          </ul> */}
           <p><a href={movie.homepage} target="_blank" rel="noopener noreferrer">Visit Official Website</a></p>
           <button className='add-group-button' onClick={() => handleAddToGroup(movie)}>Add to group</button>
         </div>
