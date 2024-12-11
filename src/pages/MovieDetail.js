@@ -10,6 +10,7 @@ import FavoriteButton from '../components/FavoriteBotton';
 import ReviewForm from '../components/ReviewForm';
 import GroupSelectionModal from '../components/GroupSelection';
 import RecommendMovies from '../components/RecommendMovies';
+import WatchlistModal from '../components/watchlistModal'
 
 
 const MovieDetail = () => {
@@ -20,6 +21,7 @@ const MovieDetail = () => {
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [averageRating,setAverageRating] = useState('')
   const [showGroup, setShowGroup] = useState(false);
+  const [showWatchlistModal, setShowWatchlistModal] = useState(false);
 
   // fetch data
   const fetchMovies = async () => {
@@ -63,6 +65,14 @@ const MovieDetail = () => {
 
   const handleAddToGroup = (movie) => {
     setShowGroup(true); 
+  };
+
+  const handleAddToWatchlist = () => {
+    setShowWatchlistModal(true);
+  };
+
+  const handleCloseWatchlistModal = () => {
+    setShowWatchlistModal(false);
   };
 
   const addReview = (newReview) => {
@@ -111,6 +121,7 @@ const MovieDetail = () => {
          
           <p><a href={movie.homepage} target="_blank" rel="noopener noreferrer">Visit Official Website</a></p>
           <button className='add-group-button' onClick={() => handleAddToGroup(movie)}>Add to group</button>
+          <button onClick={ handleAddToWatchlist}>Add to Watchlist</button>
         </div>
       </div>
 
@@ -123,6 +134,15 @@ const MovieDetail = () => {
           onClose={() => setShowGroup(false)}
         />
       )}
+
+      {showWatchlistModal && (
+          <WatchlistModal
+            isOpen={showWatchlistModal} // Control visibility of modal
+            onClose={handleCloseWatchlistModal} // Handle close
+            movieId={movie.id}  // Pass the movieId here
+            movieTitle={movie.title}  // Pass the movieTitle here
+              />
+            )}
 
       <div className="reviews-section">
         <div className="reviews-header">

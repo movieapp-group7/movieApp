@@ -1,4 +1,4 @@
-import React from 'react'
+//import React from 'react' -- react imported twice
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
