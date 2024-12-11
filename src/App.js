@@ -3,11 +3,6 @@
 import React, { useState} from 'react';
 import axios from 'axios';
 import MovieSearch from './components/SearchBar';
-import { supabase } from './utils/supabase'
-
-const backendUrl = process.env.REACT_APP_BACKEND_URL;
-
-supabase();
 
 function App() {
   const [movies, setMovies] = useState([]);
