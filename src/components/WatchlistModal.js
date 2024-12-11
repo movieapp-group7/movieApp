@@ -1,66 +1,94 @@
-
 import React, { useState } from 'react';
-import axios from 'axios';
 import useUser from '../context/useUser';
 import './WatchlistModal.css';
 
-const WatchlistModal = ({ movie, onClose }) => {
+const url = process.env.REACT_APP_API_URL;
+
+const WatchlistModal = ({ isOpen, onClose, movieId, movieTitle }) => {
   const { user } = useUser();
-  const [status, setStatus] = useState(''); // 'currently_watching', 'to_watch', 'completed'
-  const [error, setError] = useState(null);
+  const [newMovieStatus, setNewMovieStatus] = useState('To Watch'); // Default status for new movie
 
-  const handleAddToWatchlist = async () => {
-    if (!user) {
-      setError('User not found. Please log in.');
+  console.log(movieId, movieTitle); // You can check if the movieId and movieTitle are passed correctly
+
+  // Handle adding a new movie to the watchlist
+  const handleAddMovie = async () => {
+    if (!user.id) {
+      alert("Please log in to add movies to your watchlist.");
+      return;
+    }
+  
+    if (!movieId) {
+      alert("Invalid movie ID.");
       return;
     }
 
-    if (!status) {
-      setError('Please select a status for the movie.');
-      return;
-    }
+    const statusMap = {
+      'To Watch': 'to_watch',
+      'Currently Watching': 'currently_watching',
+      'Completed': 'completed',
+    };
 
+    const backendStatus = statusMap[newMovieStatus]; 
+  
+    // Use the accountId (user.id) in the URL
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/watchlist`, {
-        userId: user.id,
-        contentId: movie.id, 
-        status: status,
+      const response = await fetch(`${url}/watch/watchlist`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          accountId: user.id,
+          movieId: movieId,
+          status: backendStatus,
+        }),
       });
 
-      if (response.status === 200) {
-        alert('Movie added to watchlist successfully!');
-        onClose(); // Close the modal on success
+      // Check if the response is successful (status code 2xx)
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to add movie to watchlist');
       }
-    } catch (err) {
-      console.error('Failed to add movie to watchlist:', err);
-      setError('Failed to add movie to watchlist. Please try again.');
+
+      const data = await response.json();
+
+      // Check if the backend response indicates success
+      if (data.success) {
+        alert(`Movie '${movieTitle}' added to your watchlist as ${newMovieStatus}`);
+        onClose(); // Close modal after adding movie
+      } else {
+        // If the success flag is not true, log the failure reason
+        console.error('Failed to add movie to watchlist:', data.message || 'Unknown error');
+      }
+    } catch (error) {
+      console.error('Error adding movie to watchlist:', error.message);
     }
   };
 
+  const handleClose = () => {
+    onClose();
+  };
+
   return (
-    <div className="watchlist-modal">
+    <div className={`modal ${isOpen ? 'open' : ''}`}>
       <div className="modal-content">
-        <h2>Add to Your Watchlist</h2>
-
-        <select
-          value={status}
-          onChange={(e) => setStatus(e.target.value)}
-        >
-          <option value="">Select a status</option>
-          <option value="currently_watching">Currently Watching</option>
-          <option value="to_watch">To Watch</option>
-          <option value="completed">Completed</option>
-        </select>
-
-        {error && <p className="error-message">{error}</p>}
-
-        <div className="modal-actions">
-          <button className="add-button" onClick={handleAddToWatchlist} disabled={!status || !user}>
-            Add to Watchlist
-          </button>
-          <button className="cancel-button" onClick={onClose}>
-            Cancel
-          </button>
+        <button className="close-btn" onClick={handleClose}>&#10005;</button>
+        <h2>Add "{movieTitle}" to Your Watchlist</h2>
+        <div className="status-selection">
+          <label>
+            Select Status:
+            <select
+              value={newMovieStatus}
+              onChange={(e) => setNewMovieStatus(e.target.value)}
+            >
+              <option value="To Watch">To Watch</option>
+              <option value="Currently Watching">Currently Watching</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </label>
+        </div>
+        <div className="add-movie-btn">
+          <button onClick={handleAddMovie}>Add to Watchlist</button>
         </div>
       </div>
     </div>

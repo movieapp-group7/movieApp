@@ -9,7 +9,6 @@ import MovieReviewsList from '../components/MovieReviewsList';
 import FavoriteButton from '../components/FavoriteBotton';
 import ReviewForm from '../components/ReviewForm';
 import GroupSelectionModal from '../components/GroupSelection';
-import WatchListButton from '../components/WatchListButton';
 import WatchlistModal from '../components/WatchlistModal';
 
 
@@ -158,8 +157,10 @@ const MovieDetail = () => {
 
       {showWatchlistModal && (
         <WatchlistModal
-          movie={movie}
-          onClose={handleCloseWatchlistModal}
+        isOpen={showWatchlistModal} // Control visibility of modal
+        onClose={handleCloseWatchlistModal} // Handle close
+        movieId={movie.id}  // Pass the movieId here
+        movieTitle={movie.title}  // Pass the movieTitle here
         />
       )}
 
