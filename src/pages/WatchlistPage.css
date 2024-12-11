@@ -1,0 +1,84 @@
+.watchlist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px; 
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .watchlist-movie-poster {
+    width: 80px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .watchlist-item-content {
+    flex: 1;
+    padding-left: 10px; 
+  }
+  
+  .watchlist-movie-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .watchlist-movie-details {
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .watchlist-remove-btn {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    background-color: #ff5c5c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .watchlist-remove-btn:hover {
+    background-color: #e04b4b;
+  }
+  
+  .watchlist-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .watchlist-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .watchlist-tab {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f5f5f5;
+  }
+  
+  .watchlist-tab.active {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .watchlist-content {
+    margin-top: 20px;
+  }
+  
+  .watchlist-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
