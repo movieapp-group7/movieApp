@@ -1,7 +1,7 @@
 .watchlist-item {
     display: flex;
     align-items: flex-start;
-    gap: 20px; /* Adds space between the poster and text */
+    gap: 20px; 
     padding: 15px;
     margin-bottom: 20px;
     border: 1px solid #ddd;
@@ -19,7 +19,7 @@
   
   .watchlist-item-content {
     flex: 1;
-    padding-left: 10px; /* Add some space between poster and text */
+    padding-left: 10px; 
   }
   
   .watchlist-movie-title {

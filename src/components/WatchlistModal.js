@@ -6,11 +6,11 @@ const url = process.env.REACT_APP_API_URL;
 
 const WatchlistModal = ({ isOpen, onClose, movieId, movieTitle }) => {
   const { user } = useUser();
-  const [newMovieStatus, setNewMovieStatus] = useState('To Watch'); // Default status for new movie
+  const [newMovieStatus, setNewMovieStatus] = useState('To Watch');
 
-  console.log(movieId, movieTitle); // You can check if the movieId and movieTitle are passed correctly
+  console.log(movieId, movieTitle); 
 
-  // Handle adding a new movie to the watchlist
+  // Add Movie
   const handleAddMovie = async () => {
     if (!user.id) {
       alert("Please log in to add movies to your watchlist.");
@@ -30,7 +30,7 @@ const WatchlistModal = ({ isOpen, onClose, movieId, movieTitle }) => {
 
     const backendStatus = statusMap[newMovieStatus]; 
   
-    // Use the accountId (user.id) in the URL
+  
     try {
       const response = await fetch(`${url}/watch/watchlist`, {
         method: 'POST',
@@ -44,7 +44,7 @@ const WatchlistModal = ({ isOpen, onClose, movieId, movieTitle }) => {
         }),
       });
 
-      // Check if the response is successful (status code 2xx)
+     
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || 'Failed to add movie to watchlist');
@@ -52,12 +52,11 @@ const WatchlistModal = ({ isOpen, onClose, movieId, movieTitle }) => {
 
       const data = await response.json();
 
-      // Check if the backend response indicates success
+     
       if (data.success) {
         alert(`Movie '${movieTitle}' added to your watchlist as ${newMovieStatus}`);
-        onClose(); // Close modal after adding movie
+        onClose(); 
       } else {
-        // If the success flag is not true, log the failure reason
         console.error('Failed to add movie to watchlist:', data.message || 'Unknown error');
       }
     } catch (error) {
