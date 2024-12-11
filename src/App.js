@@ -7,7 +7,7 @@ import { supabase } from './utils/supabase'
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
-supabase()
+supabase();
 
 function App() {
   const [movies, setMovies] = useState([]);
