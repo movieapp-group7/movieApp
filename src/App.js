@@ -1,9 +1,9 @@
 // src/App.js
 // client/src/App.js
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import axios from 'axios';
 import MovieSearch from './components/SearchBar';
-import { supabase } from './supabase';
+import { supabase } from './utils/supabase'
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
@@ -74,8 +74,10 @@ function App() {
       </div>
     </div>
   );
-  <MovieSearch />
+  
 }
+
+<MovieSearch />
 
 export default App;
 
