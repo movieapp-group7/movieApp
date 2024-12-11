@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import useUser from '../context/useUser';
 import { useNavigate } from 'react-router-dom'; 
-//import './ReviewForm.css';
+import './ReviewForm.css';
 
 const url = process.env.REACT_APP_API_URL
 
@@ -31,7 +31,6 @@ const ReviewForm = ({movieId,addReview,closeForm }) => {
           body: JSON.stringify({
             movieId: movieId,
             accountId: user.id,
-            email: user.email,
             rating: rating,
             comment: newComment,
             time: new Date().toISOString(),

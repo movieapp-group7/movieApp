@@ -137,7 +137,7 @@ const ShowTimesFinnkino = () => {
           movieTitle: showtime.title,
           showTime: showtime.showTime,
           theatre: showtime.theatre,
-          description: `${showtime.title} will be shown on ${dayjs(showtime.showTime).format('YYYY-MM-DD HH:mm:ss')} at ${showtime.theatre} `
+          description: `"${showtime.title}" will be shown on ${dayjs(showtime.showTime).format('YYYY-MM-DD HH:mm:ss')} at ${showtime.theatre} `
         })
       );
 
@@ -199,7 +199,7 @@ const ShowTimesFinnkino = () => {
               onClick={() => handleSelectShowtime(movie)}
             >
               <li className='Movie' key={index}>
-              {dayjs(movie.showTime).format('YYYY-MM-DD HH:mm:ss')}
+              {dayjs(movie.showTime).format('YYYY-MM-DD /HH:mm:ss')}
               </li>
               <li className='Movie' key={index}>
                 {movie.theatre}
