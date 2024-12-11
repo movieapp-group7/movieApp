@@ -99,7 +99,14 @@ const WatchlistPage = () => {
 
   const handleRemove = async (movieId) => {
     try {
-      await axios.delete(`${url}/watchlist/${id}/movie/${movieId}`);
+      // Assuming the endpoint expects the userId and movieId
+      await axios.delete(`${url}/watch/watchlist/${user.id}/${movieId}`, {
+        data: {
+          accountId: user.id, // User ID (from context)
+          movieId: movieId,   // Movie ID to remove
+        },
+      });
+  
       fetchWatchlist(); // Refresh the list after removal
     } catch (error) {
       console.error('Error removing movie:', error);
