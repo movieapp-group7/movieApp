@@ -115,7 +115,7 @@ const WatchlistPage = () => {
 
   return (
     <div className="watchlist-container">
-      <h1>{user.username}'s Watchlist</h1>
+      <h1>My Watchlist</h1>
 
       {/* Tabs for each category */}
       <div className="watchlist-tabs">
