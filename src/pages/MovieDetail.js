@@ -113,7 +113,7 @@ const MovieDetail = () => {
           <p><strong>Overview:</strong> {movie.overview}</p>
           <p><strong>Release Date:</strong> {movie.release_date}</p>
           <p><strong>Runtime:</strong> {movie.runtime} minutes</p>
-          <p className="rating">{movie.vote_average} / 10 ({movie.vote_count} votes)</p>
+          
           {/* <p><strong>Languages:</strong> {movie.spoken_languages.map(lang => lang.english_name).join(', ')}</p> */}
           <FavoriteButton movieId={movieId} />
           <p className="average-rating">  {averageRating} / 5.0</p>
