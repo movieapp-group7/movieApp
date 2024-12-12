@@ -24,7 +24,7 @@ const FavoriteButton = ({ movieId }) => {
         const data = await response.json();
         console.log(data)
         
-        if (data) {
+        if (data.isFavorite) {
           setIsFavorite(true);
         }
       } catch (error) {
@@ -68,7 +68,7 @@ const FavoriteButton = ({ movieId }) => {
   
     return (
       <button className="favorite-button" onClick={handleFavoriteClick}>
-        <p className={`heart-icon ${isFavorite ? 'favorite' : ''}`}>&#9829; {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}</p> {/* Unicode for heart*/}
+        <p className={`heart-icon ${isFavorite ? 'favorite' : ''}`}>&#9829;
       </button>
     );
   };
