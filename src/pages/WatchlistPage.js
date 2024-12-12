@@ -115,7 +115,7 @@ const WatchlistPage = () => {
 
   return (
     <div className="watchlist-container">
-      <h1>{user.username}'s Watchlist</h1>
+      <h1>My Watchlist</h1>
 
       {/* Tabs for each category */}
       <div className="watchlist-tabs">
@@ -145,7 +145,7 @@ const WatchlistPage = () => {
           <ul className="watchlist-list">
             {currentlyWatching.length > 0
               ? renderMovies(movieDetails.currently_watching || [])
-              : <p>No movies in this list.</p>}
+              : <p className='text'>No movies in this list.</p>}
           </ul>
         )}
         {activeTab === 'to_watch' && (

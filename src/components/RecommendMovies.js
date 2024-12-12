@@ -17,7 +17,7 @@ export default function RecommendMovies({genres}) {
         `https://api.themoviedb.org/3/discover/movie?with_genres=${genreIds.join(",")}&api_key=54c539f0a2dca863d152652c08d28924`
       );
       console.log(response.data)
-      setRecommendMovies(response.data.results.slice(0, 10)||[]); 
+      setRecommendMovies(response.data.results.slice(0, 8)||[]); 
     } catch (err) {
       setError("Failed to fetch movies. Please try again.");
     } 

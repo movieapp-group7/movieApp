@@ -92,7 +92,7 @@ export default function MyReviewsPage() {
 
   return (
     <div className="reviews-page">
-      <h1>My Reviews</h1>
+      <h1 className='Maintext'>My Reviews</h1>
       <MyReviewsList reviews={reviews} movies={movies} />
       
    

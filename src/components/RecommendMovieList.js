@@ -9,18 +9,9 @@ export default function RecommendMovieList({ movies }) {
   const handleMovieClick = (movieId) => {
     navigate('/movies/'+ movieId);
   };
-
-  const scrollLeft = () => {
-    listRef.current.scrollBy({ left: -300, behavior: "smooth" });
-  };
-
-  const scrollRight = () => {
-    listRef.current.scrollBy({ left: 300, behavior: "smooth" }); 
-  };
-
+  
   return (
     <div className="movie-list-container">
-      <button className="scroll-button left" onClick={scrollLeft}>{'<'}</button>
       <div className="movie-list" ref={listRef}>
         {movies.map((movie) => (
           <div 
@@ -37,7 +28,6 @@ export default function RecommendMovieList({ movies }) {
           </div>
         ))}
       </div>
-      <button className="scroll-button right" onClick={scrollRight}>{'>'}</button>
     </div>
   );
 }

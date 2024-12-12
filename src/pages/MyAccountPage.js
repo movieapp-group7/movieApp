@@ -1,10 +1,9 @@
-//import React from 'react' -- react imported twice
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import useUser from '../context/useUser';
 import dayjs from 'dayjs';
 import './MyAccountPage.css'; 
+import defaultAvatar from '../assets/defalutAvatar.png'
 
 const url = process.env.REACT_APP_API_URL
 
@@ -87,14 +86,16 @@ const MyAccountPage = () => {
 
   return (
     <div className="container">
+      <div className='image'>
       <label htmlFor="avatar-upload">
         <img
-          src={base64Image|| 'default-avatar.png'}
+          src={base64Image|| defaultAvatar}
           alt={account.username}
           className="user-avatar"
           style={{ cursor: 'pointer' }}
         />
       </label>
+      </div>
       <input
         type="file"
         name="image"

@@ -32,7 +32,6 @@ const SearchBar = () => {
   return (
     <div className="search-bar">
       <div className="search-input-group">
-          <button onClick={toggleFilterMenu}className="search-button"><img className='filterIcon' src={filterIcon}></img></button>      
           <input 
             type="text" 
             placeholder="Search for movies..." 

@@ -1,0 +1,11 @@
+.Share{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+}
+.sharebutton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
