@@ -55,17 +55,10 @@
   margin: 10px;
 }
 
-.rating:before {
-  content: "★";
-  font-size: 1.2rem;
-  color: black;
-  margin-right: 4px;
-}
-
 .average-rating:before {
   content: "★";
   font-size: 1.2rem;
-  color: black;
+  color: gold;
   margin-right: 4px;
 }
 
@@ -88,7 +81,7 @@ a:hover {
   margin-top: 2rem;
 }
 .reviews-header {
-  margin-top: 20px;
+  margin: 20px;
   display: flex; 
   justify-content: space-between; 
   align-items: center;
@@ -152,6 +145,7 @@ a:hover {
   gap: 10px;
   flex-wrap: wrap;
   margin-top: 10px;
+  margin-left: 10px;
 }
 
 .genre-tag {
@@ -197,6 +191,7 @@ a:hover {
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;
+  margin: 10px;
   transition: background-color 0.3s ease;
 }
 

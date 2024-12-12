@@ -42,7 +42,7 @@ export default function MyGroupPage() {
   return (
     <div className="my-group-container">
       {/* search and create */}
-      <div>
+      <div className='search'>
         <input
           type="text"
           placeholder="Search groups..."
@@ -53,7 +53,7 @@ export default function MyGroupPage() {
       </div>
 
       {/* groups list*/}
-      <h2>My Groups</h2>
+      <h2 className='Maintext'>My Groups</h2>
       <div className="group-list">
         {filteredGroups.map((group) => (
           <div className="group-card" key={group.id}>

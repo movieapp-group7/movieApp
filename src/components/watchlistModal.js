@@ -65,7 +65,9 @@ const WatchlistModal = ({ isOpen, onClose, movieId, movieTitle }) => {
   return (
     <div className={`modal ${isOpen ? 'open' : ''}`}>
       <div className="modal-content">
+        <div className="xleft">
         <button className="close-btn" onClick={handleClose}>&#10005;</button>
+        </div>
         <h2>Add "{movieTitle}" to Your Watchlist</h2>
         <div className="status-selection">
           <label>
@@ -80,8 +82,8 @@ const WatchlistModal = ({ isOpen, onClose, movieId, movieTitle }) => {
             </select>
           </label>
         </div>
-        <div className="add-movie-btn">
-          <button onClick={handleAddMovie}>Add to Watchlist</button>
+        <div>
+          <button className="add-movie-btn" onClick={handleAddMovie}>Add to Watchlist</button>
         </div>
       </div>
     </div>

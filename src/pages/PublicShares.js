@@ -65,7 +65,7 @@ const PublicShares= () => {
 
   return (
     <div>
-      <h2>{favoriteInfo.email}'s Favorite List</h2>
+      <h2 className='Maintext'>{favoriteInfo.email}'s Favorite List</h2>
       <MovieList movies={movies} />
     </div>
   );

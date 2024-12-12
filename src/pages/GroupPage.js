@@ -8,6 +8,7 @@ import GroupEdit from '../components/GroupEdit'
 import './GroupPage.css';
 import MyFavoritesList from '../components/MyFavoritesList';
 import ShowtimeList from '../components/ShowtimeList';
+import defaultGroupImage from '../assets/groupDefaulImage.png'
 
 const url = process.env.REACT_APP_API_URL
 
@@ -190,7 +191,7 @@ const GroupPage = () => {
         {/* upload picture */}
         <label htmlFor="image-upload">
           <img
-            src={base64Image}
+            src={base64Image||defaultGroupImage}
             alt={group.name}
             className="group-image"
             style={{ cursor: 'pointer' }}
@@ -270,13 +271,14 @@ const GroupPage = () => {
       {isOwner && <ManageRequests groupId={groupId} />}
 
       {/* group content section */}
+      
       <h2>Custom Data</h2>
-      
+      <div className='groupcenter'>
       <div className="group-actions">
-        <button onClick={handleAddMovie}>Add Movie</button>
-        <button onClick={handleAddShowtime}>Add Showtime</button>
+        <button onClick={handleAddMovie} className='addbutton'>Add Movie</button>
+        <button onClick={handleAddShowtime} className='addbutton'>Add Showtime</button>
       </div>
-      
+      </div>
       {/* Tabs for Movie and Showtime */}
       <div className="tab-container">
         <button

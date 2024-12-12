@@ -4,6 +4,7 @@ import useUser from '../context/useUser';
 import FavoriteMovies from '../components/FavoriteMovies'
 import ShareButton from '../components/ShareButton'
 import ToggleSwitch from '../components/ToggleSwitch'
+import "./MyFavoritesPage.css"
 
 const url = process.env.REACT_APP_API_URL
 
@@ -50,17 +51,19 @@ export default function MyFavoritesPage() {
   
   return (
     <div>
-      <h2>My Favorite Movies</h2>
-      <div style={{ padding: '20px' }}>
+      <h2 className='Maintext'>My Favorite Movies</h2>
+      <div className='Share'>
         
         <p>{isPublic ? "Share Favorite List" : "Do not share"}</p>
         <ToggleSwitch initialState={isPublic} onToggle={handleToggle} />
       </div>
-      <ShareButton
-        isPublic={isPublic}
-        shareUrl={shareUrl}
-        onGenerateUrl={handleGenerateShareUrl}
-      />
+      <div className='sharebutton'>
+        <ShareButton
+         isPublic={isPublic}
+         shareUrl={shareUrl}
+         onGenerateUrl={handleGenerateShareUrl}
+        />
+      </div>
       <FavoriteMovies />
 
       

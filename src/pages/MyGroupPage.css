@@ -3,6 +3,7 @@
   max-width: 1000px;
   margin: 20px auto;
   padding: 20px;
+  left: 50%;
 }
 
 /* search bar */
@@ -12,6 +13,14 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
+  justify-content: center;
+}
+
+.search {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically (if needed) */
+  width: 100%; /* Ensures it spans the full width of the parent */
 }
 
 .group-list-header {
