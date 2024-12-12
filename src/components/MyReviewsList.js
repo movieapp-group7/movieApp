@@ -114,7 +114,9 @@ export default function MyReviewsList({ reviews, movies,onDeleteReview }) {
           );
         })
       ) : (
+        <div className='text'>
         <p>No reviews available.</p>
+        </div>
       )}
     </div>
   );

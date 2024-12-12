@@ -9,6 +9,23 @@
   position: relative; 
 }
 
+.addbutton{
+  padding: 5px 10px;
+  background-color: rgb(0, 255, 0);
+  border: 1px solid black;
+  border-radius: 8px;
+  margin: 10px;
+}
+.addbutton:hover{
+  cursor: pointer;
+}
+.groupcenter{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
 /* Group details section */
 .group-page .group-header {
   display: flex;

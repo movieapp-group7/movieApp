@@ -17,6 +17,20 @@
   align-items: center;
 }
 
+.confirmation-buttons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirm-button{
+  background-color: white;
+  padding: 10px 10px;
+  border-radius: 4px;
+  border: none;
+  margin: 10px;
+}
+
 .filter-toggle {
   display: none; /* Hidden by default for larger screens */
   background: black;
@@ -57,6 +71,10 @@
   justify-content: right;
 }
 
+.profileIcon:hover{
+  cursor: pointer;
+}
+
 .dropdown-menu {
   position: absolute;
   top: 50px; /* 根据头像位置调整 */
@@ -88,7 +106,7 @@
 }
 /* Centering the filters */
 .header-filters {
-  margin-left: 12%;
+  margin-left: 8%;
   flex: 1;
   display: flex;
   justify-content:center;

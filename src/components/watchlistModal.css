@@ -9,7 +9,34 @@
     justify-content: center;
     align-items: center;
   }
+  .status-selection{
+    margin: 10px;
+  }
+  .add-movie-btn{
+    border-radius: 4px;
+    background-color: #28a745;
+    border: 1px solid black ;
+    font-size: large;
+  }
+  .close-btn{
+    background-color: rgb(248, 55, 55);
+    border: 1px solid black ;
+    color: white;
+    border-radius: 4px;
+  }
+
+  .close-btn:hover{
+    cursor: pointer;
+  }
+
+  .add-movie-btn:hover{
+    cursor: pointer;
+  }
   
+  .xleft{
+    display: flex;
+  }
+
   .modal-content {
     background-color: white;
     padding: 20px;

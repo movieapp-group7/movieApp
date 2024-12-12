@@ -3,6 +3,7 @@ import useUser from '../context/useUser';
 import axios from 'axios';
 //import MovieList from './MovieList';
 import MyFavoritesList from './MyFavoritesList';
+import "./FavoriteMovies.css"
 
 const url = process.env.REACT_APP_API_URL
 
@@ -66,7 +67,9 @@ const FavoriteMovies= () => {
           <MyFavoritesList key={movie.id} movie={movie} />
         ))
       ) : (
+        <div className='text'>
         <p>No favorite movies available.</p>
+        </div>
       )}
     </div>
   );

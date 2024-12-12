@@ -55,12 +55,12 @@ const GroupSelectionModal = ({ movie, onClose }) => {
   return (
     <div className="group-selection">
       <div className="modal-content">
-        <h2>Chose one group to add: {movie.title}</h2>
+        <h2>Choose one group to add: {movie.title}</h2>
         <select
           value={selectedGroupId}
           onChange={(e) => setSelectedGroupId(e.target.value)}
         >
-          <option value="">chose one group</option>
+          <option value="">choose a group</option>
           {groups.map((group) => (
             <option key={group.id} value={group.id}>
               {group.name}
@@ -75,8 +75,8 @@ const GroupSelectionModal = ({ movie, onClose }) => {
           ></textarea>
         
         <div className="modal-actions">
-          <button className='add-button' onClick={handleAddMovieToGroup} disabled={!selectedGroupId}>Comfirm</button>
-          <button className='cancle-button' onClick={onClose}>Cancle</button>
+          <button className='add-button' onClick={handleAddMovieToGroup} disabled={!selectedGroupId}>Confirm</button>
+          <button className='cancle-button' onClick={onClose}>Cancel</button>
         </div>
       </div>
     </div>

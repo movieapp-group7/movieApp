@@ -85,6 +85,7 @@ const MyAccountPage = () => {
 
   return (
     <div className="container">
+      <div className='image'>
       <label htmlFor="avatar-upload">
         <img
           src={base64Image|| defaultAvatar}
@@ -93,6 +94,7 @@ const MyAccountPage = () => {
           style={{ cursor: 'pointer' }}
         />
       </label>
+      </div>
       <input
         type="file"
         name="image"

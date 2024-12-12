@@ -145,7 +145,7 @@ const WatchlistPage = () => {
           <ul className="watchlist-list">
             {currentlyWatching.length > 0
               ? renderMovies(movieDetails.currently_watching || [])
-              : <p>No movies in this list.</p>}
+              : <p className='text'>No movies in this list.</p>}
           </ul>
         )}
         {activeTab === 'to_watch' && (
