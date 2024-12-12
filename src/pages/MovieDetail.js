@@ -115,9 +115,9 @@ const MovieDetail = () => {
           <p><strong>Runtime:</strong> {movie.runtime} minutes</p>
           
           {/* <p><strong>Languages:</strong> {movie.spoken_languages.map(lang => lang.english_name).join(', ')}</p> */}
+         
+          <span className="average-rating">  {averageRating} / 5.0</span>
           <FavoriteButton movieId={movieId} />
-          <p className="average-rating">  {averageRating} / 5.0</p>
-          <p><strong>Production Companies:</strong></p>
           {/* <ul>
             {movie.production_companies.map(company => (
               <li key={company.id}>
