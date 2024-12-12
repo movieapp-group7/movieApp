@@ -68,7 +68,7 @@ const FavoriteButton = ({ movieId }) => {
   
     return (
       <button className="favorite-button" onClick={handleFavoriteClick}>
-        <p className={`heart-icon ${isFavorite ? 'favorite' : ''}`}>&#9829;
+        <p className={`heart-icon ${isFavorite ? 'favorite' : ''}`}>&#9829;</p>
       </button>
     );
   };

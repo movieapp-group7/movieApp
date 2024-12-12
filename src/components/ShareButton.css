@@ -13,13 +13,14 @@
 }
 
 .share-options {
+  justify-content: center;
+  align-items: center;
   position: absolute;
   top: 100%;
-  left: 0;
+  left:-29%;
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 5px;
-  margin-top: 5px;
   padding: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;

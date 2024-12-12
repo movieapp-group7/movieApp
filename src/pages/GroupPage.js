@@ -271,13 +271,14 @@ const GroupPage = () => {
       {isOwner && <ManageRequests groupId={groupId} />}
 
       {/* group content section */}
+      
       <h2>Custom Data</h2>
-      
+      <div className='groupcenter'>
       <div className="group-actions">
-        <button onClick={handleAddMovie}>Add Movie</button>
-        <button onClick={handleAddShowtime}>Add Showtime</button>
+        <button onClick={handleAddMovie} className='addbutton'>Add Movie</button>
+        <button onClick={handleAddShowtime} className='addbutton'>Add Showtime</button>
       </div>
-      
+      </div>
       {/* Tabs for Movie and Showtime */}
       <div className="tab-container">
         <button

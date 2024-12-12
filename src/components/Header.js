@@ -23,6 +23,7 @@ const Header = () => {
   const { user, deleteAccount,signOut } = useContext(UserContext);
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isFilterDropdownOpen, setIsFilterDropdownOpen] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
 
   const handleSignOut = () => {
@@ -66,11 +67,11 @@ const Header = () => {
         <div className="header-filters">
           <button
             className="filter-toggle"
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            onClick={() => setIsFilterDropdownOpen(!isFilterDropdownOpen)}
           >
             Filters
           </button>
-          <div className={`filter-dropdown ${isDropdownOpen ? 'open' : ''}`}>
+          <div className={`filter-dropdown ${isFilterDropdownOpen? 'open' : ''}`}>
             <FilterTags filters={filters} />
           </div>
         </div>

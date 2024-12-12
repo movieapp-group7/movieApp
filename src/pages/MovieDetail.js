@@ -130,7 +130,7 @@ const MovieDetail = () => {
           </ul> */}
           <p><a href={movie.homepage} target="_blank" rel="noopener noreferrer">Visit Official Website</a></p>
           <button className='add-group-button' onClick={() => handleAddToGroup(movie)}>Add to group</button>
-          <button onClick={ handleAddToWatchlist}>Add to Watchlist</button>
+          <button className='add-group-button' onClick={ handleAddToWatchlist}>Add to Watchlist</button>
         </div>
       </div>
 
