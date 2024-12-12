@@ -199,6 +199,9 @@ const ShowTimesFinnkino = () => {
               onClick={() => handleSelectShowtime(movie)}
             >
               <li className='Movie' key={index}>
+              {movie.title} 
+              </li>
+              <li className='Movie' key={index}>
               {dayjs(movie.showTime).format('YYYY-MM-DD /HH:mm:ss')}
               </li>
               <li className='Movie' key={index}>
