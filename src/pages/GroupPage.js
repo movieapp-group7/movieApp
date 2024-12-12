@@ -8,6 +8,7 @@ import GroupEdit from '../components/GroupEdit'
 import './GroupPage.css';
 import MyFavoritesList from '../components/MyFavoritesList';
 import ShowtimeList from '../components/ShowtimeList';
+import defaultGroupImage from '../assets/groupDefaulImage.png'
 
 const url = process.env.REACT_APP_API_URL
 
@@ -190,7 +191,7 @@ const GroupPage = () => {
         {/* upload picture */}
         <label htmlFor="image-upload">
           <img
-            src={base64Image}
+            src={base64Image||defaultGroupImage}
             alt={group.name}
             className="group-image"
             style={{ cursor: 'pointer' }}

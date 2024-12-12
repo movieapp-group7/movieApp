@@ -36,18 +36,18 @@ export default function MyReviewsList({ reviews, movies,onDeleteReview }) {
       return 0;
     });
 
-  const handleDeleteReview = async (reviewId) => {
-    try {
-      await axios.delete(`${process.env.REACT_APP_API_URL}/reviews/${reviewId}`);
-      onDeleteReview(reviewId); // 通知父组件更新评论列表
-    } catch (error) {
-      console.error("Failed to delete review:", error);
-    }
-  };
+  // const handleDeleteReview = async (reviewId) => {
+  //   try {
+  //     await axios.delete(`${process.env.REACT_APP_API_URL}/reviews/${reviewId}`);
+  //     onDeleteReview(reviewId); 
+  //   } catch (error) {
+  //     console.error("Failed to delete review:", error);
+  //   }
+  // };
 
   return (
     <div className="my-review-list">
-      {/* 排序和搜索选项 */}
+      {/* search and sort */}
       <div className="filter-sort-container">
         <input
           type="text"
@@ -69,7 +69,7 @@ export default function MyReviewsList({ reviews, movies,onDeleteReview }) {
             <option value="averageRating">Average Rating</option>
           </select>
           <button className="sort-order-button" onClick={toggleSortOrder}>
-            {sortOrder === 'desc' ? '↓' : '↑'} {/* 显示箭头 */}
+            {sortOrder === 'desc' ? '↓' : '↑'} 
           </button>
         </div>
       </div>
@@ -91,7 +91,7 @@ export default function MyReviewsList({ reviews, movies,onDeleteReview }) {
                   <div className="release-runtime">
                     <span>{movie.release_date} | {movie.runtime} min</span>
                   </div>
-                  <div className="movie-details">
+                  <div className="rating">
                     <span className='avr-rating'> {review.averageRating} / 5.0</span>
                     <span className='my-rating'> {review.rating} / 5.0</span>
                   </div>
@@ -103,12 +103,12 @@ export default function MyReviewsList({ reviews, movies,onDeleteReview }) {
                 <p className="review-time">
                   Reviewed on: {dayjs(review.time).format('YYYY-MM-DD HH:mm:ss')}
                 </p>
-                <button
+                {/* <button
                   className="delete-button"
                   onClick={() => handleDeleteReview(review.id)}
                 >
                   Delete
-                </button>
+                </button> */}
               </div>
             </div>
           );

@@ -19,7 +19,7 @@ export default function MyFavoritesList({movie}) {
                 <div className="release-runtime">
                   <span>{movie.release_date} | {movie.runtime} min</span>
                 </div>
-                <div className='movie-details'>
+                <div className='rating'>
                   <span className='avr-rating'>Rating: {movie.averageRating} / 5.0</span>
                 </div>
               </div>
