@@ -77,6 +77,10 @@ const MovieDetail = () => {
 
   const addReview = (newReview) => {
     setReviews((prevReviews) => [newReview,...prevReviews]);
+    const updatedReviews = [newReview, ...reviews];
+    const totalRating = updatedReviews.reduce((acc, review) => acc + parseFloat(review.rating), 0);
+    const newAverageRating = (totalRating / updatedReviews.length).toFixed(1);
+    setAverageRating(newAverageRating);
   };
 
   useEffect(() => {
@@ -118,16 +122,6 @@ const MovieDetail = () => {
          
           <span className="average-rating">  {averageRating} / 5.0</span>
           <FavoriteButton movieId={movieId} />
-          {/* <ul>
-            {movie.production_companies.map(company => (
-              <li key={company.id}>
-                {company.logo_path ? (
-                  <img src={`https://image.tmdb.org/t/p/w200${company.logo_path}`} alt={company.name} className="company-logo" />
-                ) : null}
-                {company.name}
-              </li>
-            ))}
-          </ul> */}
           <p><a href={movie.homepage} target="_blank" rel="noopener noreferrer">Visit Official Website</a></p>
           <button className='add-group-button' onClick={() => handleAddToGroup(movie)}>Add to group</button>
           <button className='add-group-button' onClick={ handleAddToWatchlist}>Add to Watchlist</button>
