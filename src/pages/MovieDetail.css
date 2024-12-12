@@ -55,17 +55,11 @@
   margin: 10px;
 }
 
-.rating:before {
-  content: "★";
-  font-size: 1.2rem;
-  color: black;
-  margin-right: 4px;
-}
 
 .average-rating:before {
   content: "★";
   font-size: 1.2rem;
-  color: black;
+  color: gold;
   margin-right: 4px;
 }
 
