@@ -3,6 +3,7 @@ import axios from 'axios';
 import useUser from '../context/useUser';
 import dayjs from 'dayjs';
 import './MyAccountPage.css'; 
+import defaultAvatar from '../assets/defalutAvatar.png'
 
 const url = process.env.REACT_APP_API_URL
 
@@ -86,7 +87,7 @@ const MyAccountPage = () => {
     <div className="container">
       <label htmlFor="avatar-upload">
         <img
-          src={base64Image|| 'default-avatar.png'}
+          src={base64Image|| defaultAvatar}
           alt={account.username}
           className="user-avatar"
           style={{ cursor: 'pointer' }}

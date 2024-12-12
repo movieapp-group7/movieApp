@@ -27,6 +27,7 @@ import MyReviewsPage from './pages/MyReviewsPage';
 import MyGroupPage from './pages/MyGroupPage';
 import AllPublicShares from './pages/AllPublicShares';
 import GroupPage from './pages/GroupPage';
+import WatchlistPage from './pages/WatchlistPage';
 
 
 
@@ -122,6 +123,10 @@ const router = createBrowserRouter([
             path: "/user/:id/group",
             element: <MyGroupPage />,
           },
+          {
+            path: "/user/:id/watchlist",
+            element: <WatchlistPage />,
+          }, 
         ],
       },
     ],
