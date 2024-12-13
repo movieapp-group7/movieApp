@@ -29,6 +29,7 @@ jobs:
           lfs: false
       - name: Install Dependencies
         run: npm install
+        #
       - name: Build and Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
