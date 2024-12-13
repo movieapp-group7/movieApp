@@ -1,8 +1,13 @@
 // src/App.js
 // client/src/App.js
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import axios from 'axios';
 import MovieSearch from './components/SearchBar';
+//import { createClient } from '@supabase/supabase-js'
+
+//createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_ANON_KEY);
+
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -12,19 +17,19 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const handleSignup = async () => {
-    await axios.post('http://localhost:5000/api/auth/signup', { email, password });
+    await axios.post(backendUrl + '/api/auth/signup', { email, password });
     alert("User registered!");
   };
 
   const handleSignin = async () => {
-    const response = await axios.post('http://localhost:5000/api/auth/signin', { email, password });
+    const response = await axios.post(backendUrl + '/api/auth/signin', { email, password });
     localStorage.setItem('token', response.data.token);
     setIsAuthenticated(true);
   };
 
   const handleDeleteAccount = async () => {
     const token = localStorage.getItem('token');
-    await axios.delete('http://localhost:5000/api/auth/delete', {
+    await axios.delete(backendUrl + '/api/auth/delete', {
       headers: { Authorization: `Bearer ${token}` },
     });
     setIsAuthenticated(false);
@@ -32,7 +37,7 @@ function App() {
   };
 
   const searchMovies = async () => {
-    const response = await axios.get('http://localhost:5000/api/movies/search', { params: { query } });
+    const response = await axios.get('backendUrl + /api/movies/search', { params: { query } });
     setMovies(response.data);
   };
 
@@ -69,8 +74,10 @@ function App() {
       </div>
     </div>
   );
-  <MovieSearch />
+  
 }
+
+<MovieSearch />
 
 export default App;
 

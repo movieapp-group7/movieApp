@@ -20,6 +20,7 @@ const MyAccountPage = () => {
   useEffect(() => {
     fetchAccountInfo();
     fetchUserAvatar()
+    // eslint-disable-next-line
   }, []);
 
   const fetchAccountInfo = async () =>{
