@@ -8,7 +8,7 @@ const url = process.env.REACT_APP_API_URL
 const ReviewForm = ({movieId,addReview,closeForm }) => {
   const { user } = useUser();
   const navigate = useNavigate();
-  const [rating, setRating] = useState('');
+  const [rating, setRating] = useState(0);
   const [newComment, setNewComment] = useState(''); 
   const maxLength = 500; 
 
@@ -46,7 +46,7 @@ const ReviewForm = ({movieId,addReview,closeForm }) => {
             time: new Date().toISOString(),
           });
           console.log("Review added successfully", data);
-          setRating('');
+          setRating(0);
           setNewComment(''); // Clear the review input field after submission
           closeForm();
         } else {

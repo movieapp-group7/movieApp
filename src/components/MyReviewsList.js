@@ -5,17 +5,14 @@ import dayjs from 'dayjs';
 import './MyReviewsList.css';
 
 export default function MyReviewsList({ reviews, movies,onDeleteReview }) {
-  // 定义搜索关键字、排序方式和排序顺序的状态
   const [searchTerm, setSearchTerm] = useState('');
   const [sortOption, setSortOption] = useState('recent');
-  const [sortOrder, setSortOrder] = useState('desc'); // 默认排序顺序为降序
+  const [sortOrder, setSortOrder] = useState('desc'); 
 
-  // 切换排序顺序的函数
   const toggleSortOrder = () => {
     setSortOrder((prevOrder) => (prevOrder === 'desc' ? 'asc' : 'desc'));
   };
 
-  // 根据用户选择的排序方式来对评论进行排序和过滤
   const displayedReviews = [...reviews]
     .filter((review) => {
       const movie = movies[review.movie_id];
