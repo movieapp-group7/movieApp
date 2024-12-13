@@ -3,9 +3,9 @@
 import React, { useState} from 'react';
 import axios from 'axios';
 import MovieSearch from './components/SearchBar';
-import { createClient } from '@supabase/supabase-js'
+//import { createClient } from '@supabase/supabase-js'
 
-createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_ANON_KEY);
+//createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_ANON_KEY);
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
